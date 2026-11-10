@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hybrid-rag-sql-assistant"
+version = "0.1.0"
+description = "Enterprise Customer Support AI Engine with Hybrid RAG + SQL"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas",
+    "sqlalchemy",
+    "psycopg2-binary",
+    "python-dotenv",
+    "langchain",
+    "langchain-community",
+    "chromadb"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "flake8",
+    "ragas"
+]
