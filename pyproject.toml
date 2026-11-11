@@ -21,6 +21,7 @@ dependencies = [
     "sentence-transformers",
     "langchain-huggingface",
     "langchain-chroma"
+    "langchain-google-genai"
 ]
 
 [project.optional-dependencies]
