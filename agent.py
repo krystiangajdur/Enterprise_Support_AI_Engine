@@ -6,12 +6,13 @@ from langchain_core.tools import Tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_huggingface import HuggingFaceEmbeddings
 faulthandler.dump_traceback_later(30, exit=True)
+
 load_dotenv()
 
 print('Ladowanie bazy wektorowej RAG...')
 embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 vectorstore = Chroma(
-    persist_directory = "./chroma.db",
+    persist_directory = "./chroma_db",
     embedding_function = embeddings
 )
 
@@ -51,11 +52,16 @@ agent = create_agent(
     model = llm,
     tools = tools,
     system_prompt = (
-        "Jesteś asystentem obsługi klienta sklepu ModaLoop. "
+        "Jesteś asystentem obsługi klienta sklepu ModaLoop. Twoim JEDYNYM zadaniem jest pomoc "
+        "w sprawach zamówień, logistyki i regulaminu sklepu. "
+        "Jeśli użytkownik zapyta o cokolwiek niezwiązanego z działaniem sklepu (np. o aktualną datę, "
+        "pogodę, porady życiowe czy wiedzę ogólną), grzecznie odmów i poinformuj, że zajmujesz się "
+        "wyłącznie obsługą sklepu ModaLoop. "
         "Odpowiadaj po polsku. Na pytania o regulamin odpowiadaj WYŁĄCZNIE na podstawie "
-        "wyników narzędzia PolicySearch, nawet jeśli wydają Ci się nietypowe. "
-        "Jeśli narzędzie nie zawiera odpowiedzi, powiedz, że nie masz takiej informacji."
-        "Zawsze po danej odpowiedzi napisz: Masz jeszcze jakies pytanie?"
+        "wyników narzędzia PolicySearch. "
+        "Zawsze na końcu odpowiedzi dodaj: "
+        "Jeśli odpowiedź cię nie satysfakcjonuje, spróbuj sformułować pytanie w inny sposób. "
+        "Jak masz jeszcze jakieś pytania - zadaj je - postaram się odpowiedzieć najlepiej jak potrafię. :) "
     ),
 )
 
@@ -79,7 +85,7 @@ if __name__ == "__main__":
     print("\nSystem agenta hybrydowego gotowy do pracy!\n")
 
     print("--- TEST 1: Pytanie do RAG ---")
-    print(f"\nOdpowiedź agenta:\n{ask('Ile mam dni na zwrot towaru zgodnie z regulaminem?')}\n")
+    print(f"\nOdpowiedź agenta:\n{ask('Napisz wszystkie możliwości dostawy wraz z kosztami.')}\n")
 
     print("--- TEST 2: Pytanie o zamówienie ---")
-    print(f"\nOdpowiedź agenta:\n{ask('Jaki jest status mojego zamówienia numer ORD-998877?')}\n")
+    print(f"\nOdpowiedź agenta:\n{ask('Co powinienem zjeść jutro na śniadanie?')}\n")
