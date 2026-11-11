@@ -1,11 +1,11 @@
-import faulthandler
+import os
+import psycopg2
 from dotenv import load_dotenv
 from langchain.agents import create_agent
 from langchain_chroma import Chroma
 from langchain_core.tools import Tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_huggingface import HuggingFaceEmbeddings
-faulthandler.dump_traceback_later(30, exit=True)
 
 load_dotenv()
 
@@ -34,7 +34,33 @@ def check_order_status(order_id: str):
     clean_id = order_id.strip()
     if not clean_id:
         return "Nie podano numeru zamówienia."
-    return f'Zamówienie o numerze {clean_id} ma status: Wyslane / W drodze do klienta.'
+
+    try:
+        conn = psycopg2.connect(
+            user = os.getenv("DB_USER"),
+            password = os.getenv("DB_PASSWORD"),
+            host = os.getenv("DB_HOST"),
+            port = os.getenv("DB_PORT"),
+            dbname = os.getenv("DB_NAME")
+        )
+        cursor = conn.cursor()
+
+        query = "SELECT product_name, status, order_date FROM orders WHERE order_id = %s"
+        cursor.execute(query, (clean_id,))
+        result = cursor.fetchone()
+
+        cursor.close()
+        conn.close()
+
+        if result:
+            product_name, status, order_date = result
+            return f'Zamówienie {clean_id}: Produkt: {product_name}\nStatus: {status}\nData zakupu: {order_date}'
+        else:
+            return f'Niestety nie znalazłem zamówienia o numerze {clean_id} w naszym systemie.'
+
+    except Exception as e:
+        print(f"\n[BLĄD POŁĄCZENIA Z BAZĄ]: {e}\n")
+        return f"Wystąpił błąd podczas łączenia z bazą danych."
 
 sql_tool = Tool(
     name = 'CheckOrderStatus',
@@ -43,7 +69,7 @@ sql_tool = Tool(
 )
 
 print("Inicjalizowanie modelu Gemini...")
-llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash-lite", timeout = 30, max_retries = 1)
+llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash-lite", timeout = 60, max_retries = 1)
 
 tools = [rag_tool, sql_tool]
 
@@ -84,8 +110,13 @@ def ask(question):
 if __name__ == "__main__":
     print("\nSystem agenta hybrydowego gotowy do pracy!\n")
 
-    print("--- TEST 1: Pytanie do RAG ---")
-    print(f"\nOdpowiedź agenta:\n{ask('Napisz wszystkie możliwości dostawy wraz z kosztami.')}\n")
+    print("--- TEST 1 ---")
+    print(f"\nOdpowiedź agenta:\n{ask('Jaki ma status moje zamówienie?: 120')}\n")
 
-    print("--- TEST 2: Pytanie o zamówienie ---")
-    print(f"\nOdpowiedź agenta:\n{ask('Co powinienem zjeść jutro na śniadanie?')}\n")
+    print("--- TEST 2 ---")
+    print(f"\nOdpowiedź agenta:\n{ask('Jaki status ma zamówienie 130? Jest juz dostarczone')}\n")
+
+    print("--- TEST 3 ---")
+    print(f"\nOdpowiedź agenta:\n{ask('Jaki mam czas do zwrotu?')}\n")
+
+
