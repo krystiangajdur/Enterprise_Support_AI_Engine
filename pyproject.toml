@@ -11,12 +11,15 @@ requires-python = ">=3.10"
 dependencies = [
     "pandas",
     "sqlalchemy",
-    "psycopg[binary]"
+    "psycopg[binary]",
     "psycopg2-binary",
     "python-dotenv",
     "langchain",
     "langchain-community",
-    "chromadb"
+    "chromadb",
+    "pypdf",
+    "sentence-transformers",
+    "langchain-huggingface"
 ]
 
 [project.optional-dependencies]
