@@ -19,7 +19,9 @@ dependencies = [
     "chromadb",
     "pypdf",
     "sentence-transformers",
-    "langchain-huggingface"
+    "langchain-huggingface",
+    "langchain-chroma"
+    "langchain-google-genai"
 ]
 
 [project.optional-dependencies]
