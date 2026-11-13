@@ -20,7 +20,7 @@ dependencies = [
     "pypdf",
     "sentence-transformers",
     "langchain-huggingface",
-    "langchain-chroma"
+    "langchain-chroma",
     "langchain-google-genai"
 ]
 
