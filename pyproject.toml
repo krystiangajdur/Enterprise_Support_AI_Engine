@@ -21,7 +21,9 @@ dependencies = [
     "sentence-transformers",
     "langchain-huggingface",
     "langchain-chroma",
-    "langchain-google-genai"
+    "langchain-google-genai",
+    "fastapi",
+    "uvicorn"
 ]
 
 [project.optional-dependencies]
