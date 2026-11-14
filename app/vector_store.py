@@ -4,11 +4,11 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 
-from app.config import CHROMA_DIR, PDF_PATH
+from app.config import CHROMA_DIR, PDF_PATH, EMBEDDING_MODEL
 
 def ingest_policy_pdf():
-    pdf_path = PDF_PATH
-    persist_directory = CHROMA_DIR
+    pdf_path = str(PDF_PATH)
+    persist_directory = str(CHROMA_DIR)
 
     if not os.path.exists(pdf_path):
         print(f'Błąd: Nie znaleziono pliku {pdf_path} w katalogu projektu.')
@@ -26,7 +26,7 @@ def ingest_policy_pdf():
     print(f'Podzielono dokument na {len(chunks)} fragmentow.')
 
     print('Inicjalizacja lokalnego modelu embeddingow...')
-    embeddings = HuggingFaceEmbeddings(model_name = "all-MiniLM-L6-v2")
+    embeddings = HuggingFaceEmbeddings(model_name = EMBEDDING_MODEL)
 
     print('Tworzenie i zapis bazy wektorowej ChromaDB...')
     vectorstore = Chroma.from_documents(

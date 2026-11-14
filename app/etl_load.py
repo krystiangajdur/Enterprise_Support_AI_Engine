@@ -16,7 +16,7 @@ print("Connecting to PostgreSQL...")
 engine = create_engine(connection_string)
 
 print("Reading customers_orders.csv...")
-df = pd.read_csv("customers_orders.csv")
+df = pd.read_csv(ORDERS_CSV)
 
 print("Transforming data...")
 df['customer_name'] = df['customer_name'].str.strip()

@@ -7,17 +7,16 @@ from langchain_core.tools import Tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_huggingface import HuggingFaceEmbeddings
 
+from app.config import CHROMA_DIR, EMBEDDING_MODEL, LLM_MODEL, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
+
 load_dotenv()
 
 print('Ladowanie bazy wektorowej RAG...')
-embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+embeddings = HuggingFaceEmbeddings(model_name = EMBEDDING_MODEL)
 vectorstore = Chroma(
-    persist_directory = "A:/SUPPORT_AI/Enterprise_Support_AI_Engine/chroma_db",
+    persist_directory = CHROMA_DIR,
     embedding_function = embeddings
 )
-print("Katalog roboczy:", os.getcwd())
-print("Ścieżka bazy:", os.path.abspath("./chroma_db"))
-print("Liczba fragmentów w bazie:", vectorstore._collection.count())
 
 retriever = vectorstore.as_retriever(search_kwargs = {"k":2})
 
@@ -40,11 +39,11 @@ def check_order_status(order_id: str):
 
     try:
         conn = psycopg2.connect(
-            user = os.getenv("DB_USER"),
-            password = os.getenv("DB_PASSWORD"),
-            host = os.getenv("DB_HOST"),
-            port = os.getenv("DB_PORT"),
-            dbname = os.getenv("DB_NAME")
+            user = DB_USER,
+            password = DB_PASSWORD,
+            host = DB_HOST,
+            port = DB_PORT,
+            dbname = DB_NAME
         )
         cursor = conn.cursor()
 
@@ -72,7 +71,7 @@ sql_tool = Tool(
 )
 
 print("Inicjalizowanie modelu Gemini...")
-llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash-lite", timeout = 60, max_retries = 1)
+llm = ChatGoogleGenerativeAI(model = LLM_MODEL, timeout = 60, max_retries = 1)
 
 tools = [rag_tool, sql_tool]
 
