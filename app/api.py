@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from agent import ask
+from app.agent import ask
 
 app = FastAPI(title = "ModaLoop  AI", description = "API do obsługi klienta.")
 
