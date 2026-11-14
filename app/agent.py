@@ -1,6 +1,4 @@
-import os
 import psycopg2
-from dotenv import load_dotenv
 from langchain.agents import create_agent
 from langchain_chroma import Chroma
 from langchain_core.tools import Tool
@@ -8,8 +6,6 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_huggingface import HuggingFaceEmbeddings
 
 from app.config import CHROMA_DIR, EMBEDDING_MODEL, LLM_MODEL, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
-
-load_dotenv()
 
 print('Ladowanie bazy wektorowej RAG...')
 embeddings = HuggingFaceEmbeddings(model_name = EMBEDDING_MODEL)

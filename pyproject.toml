@@ -7,7 +7,7 @@ name = "hybrid-rag-sql-assistant"
 version = "0.1.0"
 description = "Enterprise Customer Support AI Engine with Hybrid RAG + SQL"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
     "pandas",
     "sqlalchemy",
