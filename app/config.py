@@ -12,7 +12,6 @@ PDF_PATH = DATA_DIR / "ModaLoop_Regulamin_i_Polityka_Logistyczna.pdf"
 ORDERS_CSV = DATA_DIR / "customers_orders.csv"
 
 EMBEDDING_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"
-RETRIEVER_K = 2
 LLM_MODEL = "gemini-3.5-flash-lite"
 
 DB_USER = os.getenv("DB_USER")
