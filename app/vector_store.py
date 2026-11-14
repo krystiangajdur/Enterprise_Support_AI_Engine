@@ -4,9 +4,11 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 
+from app.config import CHROMA_DIR, PDF_PATH
+
 def ingest_policy_pdf():
-    pdf_path = "ModaLoop_Regulamin_i_Polityka_Logistyczna.pdf"
-    persist_directory = "./chroma_db"
+    pdf_path = PDF_PATH
+    persist_directory = CHROMA_DIR
 
     if not os.path.exists(pdf_path):
         print(f'Błąd: Nie znaleziono pliku {pdf_path} w katalogu projektu.')
