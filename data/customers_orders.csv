@@ -1,31 +1,171 @@
-order_id,customer_name,product_name,status,order_date
-101,Anna Kowalska,Laptop Pro X,W transporcie,2026-06-01
-102,Jan Nowak,Mysz bezprzewodowa,Dostarczone,2026-06-03
-103,Katarzyna Wiśniewska,Monitor 27 cali,Oczekuje na płatność,2026-06-05
-104,Piotr Zieliński,Klawiatura mechaniczna,Anulowane,2026-05-28
-105,Magda Wójcik,Słuchawki Bluetooth,W transporcie,2026-06-04
-106,Tomasz Kamiński,Stacja dokująca USB-C,Dostarczone,2026-06-02
-107,Agnieszka Lewandowska,Kabel HDMI 2m,W transporcie,2026-06-06
-108,Michał Dąbrowski,Podkładka pod mysz RGB,Dostarczone,2026-06-01
-109,Barbara Kozłowska,Kamera internetowa 4K,Oczekuje na płatność,2026-06-07
-110,Łukasz Jankowski,Mikrofon pojemnościowy,Dostarczone,2026-06-03
-111,Karolina Mazur,Krzesło ergonomiczne,Anulowane,2026-05-30
-112,Paweł Krawczyk,Biurko regulowane,W transporcie,2026-06-06
-113,Ewa Piotrowska,Zestaw głośników 2.1,Dostarczone,2026-06-04
-114,Marcin Grabowski,Dysk SSD 1TB,Oczekuje na płatność,2026-06-08
-115,Klaudia Pawłowska,Router Wi-Fi 6,Dostarczone,2026-06-05
-116,Krzysztof Woźniak,Laptop Pro X,W transporcie,2026-05-29
-117,Monika Zielińska,Monitor 27 cali,Dostarczone,2026-06-01
-118,Jakub Kozłowski,Klawiatura mechaniczna,Oczekuje na płatność,2026-06-06
-119,Natalia Mazur,Słuchawki Bluetooth,Anulowane,2026-05-27
-120,Mateusz Kamiński,Mysz bezprzewodowa,Dostarczone,2026-06-02
-121,Aleksandra Dąbrowska,Stacja dokująca USB-C,W transporcie,2026-06-04
-122,Kamil Grabowski,Kabel HDMI 2m,Dostarczone,2026-06-03
-123,Joanna Krawczyk,Podkładka pod mysz RGB,Oczekuje na płatność,2026-06-07
-124,Bartosz Jankowski,Kamera internetowa 4K,Dostarczone,2026-06-05
-125,Marta Wiśniewska,Mikrofon pojemnościowy,Anulowane,2026-05-31
-126,Szymon Kowalski,Krzesło ergonomiczne,W transporcie,2026-06-06
-127,Zuzanna Nowak,Biurko regulowane,Dostarczone,2026-06-04
-128,Adam Wójcik,Zestaw głośników 2.1,Oczekuje na płatność,2026-06-08
-129,Julia Lewandowska,Dysk SSD 1TB,Dostarczone,2026-06-02
-130,Paweł Kozłowski,Router Wi-Fi 6,W transporcie,2026-06-05
+order_id,customer_id,customer_name,product_name,status,order_date
+101,C001,Anna Kowalska,Laptop Pro X,W transporcie,2026-06-01
+102,C002,Jan Nowak,Mysz bezprzewodowa,Dostarczone,2026-06-03
+103,C003,Katarzyna Wiśniewska,Monitor 27 cali,Oczekuje na płatność,2026-06-05
+104,C004,Piotr Zieliński,Klawiatura mechaniczna,Anulowane,2026-05-28
+105,C005,Magda Wójcik,Słuchawki Bluetooth,W transporcie,2026-06-04
+106,C006,Tomasz Kamiński,Stacja dokująca USB-C,Dostarczone,2026-06-02
+107,C007,Agnieszka Lewandowska,Kabel HDMI 2m,W transporcie,2026-06-06
+108,C008,Michał Dąbrowski,Podkładka pod mysz RGB,Dostarczone,2026-06-01
+109,C009,Barbara Kozłowska,Kamera internetowa 4K,Oczekuje na płatność,2026-06-07
+110,C010,Łukasz Jankowski,Mikrofon pojemnościowy,Dostarczone,2026-06-03
+111,C011,Karolina Mazur,Krzesło ergonomiczne,Anulowane,2026-05-30
+112,C012,Paweł Krawczyk,Biurko regulowane,W transporcie,2026-06-06
+113,C013,Ewa Piotrowska,Zestaw głośników 2.1,Dostarczone,2026-06-04
+114,C014,Marcin Grabowski,Dysk SSD 1TB,Oczekuje na płatność,2026-06-08
+115,C015,Klaudia Pawłowska,Router Wi-Fi 6,Dostarczone,2026-06-05
+116,C016,Krzysztof Woźniak,Laptop Pro X,W transporcie,2026-05-29
+117,C017,Monika Zielińska,Monitor 27 cali,Dostarczone,2026-06-01
+118,C018,Jakub Kozłowski,Klawiatura mechaniczna,Oczekuje na płatność,2026-06-06
+119,C019,Natalia Mazur,Słuchawki Bluetooth,Anulowane,2026-05-27
+120,C020,Mateusz Kamiński,Mysz bezprzewodowa,Dostarczone,2026-06-02
+121,C021,Aleksandra Dąbrowska,Stacja dokująca USB-C,W transporcie,2026-06-04
+122,C022,Kamil Grabowski,Kabel HDMI 2m,Dostarczone,2026-06-03
+123,C023,Joanna Krawczyk,Podkładka pod mysz RGB,Oczekuje na płatność,2026-06-07
+124,C024,Bartosz Jankowski,Kamera internetowa 4K,Dostarczone,2026-06-05
+125,C025,Marta Wiśniewska,Mikrofon pojemnościowy,Anulowane,2026-05-31
+126,C026,Szymon Kowalski,Krzesło ergonomiczne,W transporcie,2026-06-06
+127,C027,Zuzanna Nowak,Biurko regulowane,Dostarczone,2026-06-04
+128,C028,Adam Wójcik,Zestaw głośników 2.1,Oczekuje na płatność,2026-06-08
+129,C029,Julia Lewandowska,Dysk SSD 1TB,Dostarczone,2026-06-02
+130,C030,Paweł Kozłowski,Router Wi-Fi 6,W transporcie,2026-06-05
+131,C031,Anna Kaczmarek,Biurko regulowane,Dostarczone,2026-05-29
+132,C032,Łukasz Lewandowski,Zestaw głośników 2.1,Dostarczone,2026-05-26
+133,C033,Alicja Zając,Podkładka pod mysz RGB,Dostarczone,2026-06-01
+134,C034,Adam Wiśniewski,Mysz bezprzewodowa,Oczekuje na płatność,2026-06-07
+135,C035,Marcin Pawłowski,Słuchawki Bluetooth,Dostarczone,2026-06-01
+136,C036,Anna Chmielewska,Zestaw głośników 2.1,Dostarczone,2026-05-30
+137,C037,Grzegorz Zając,Router Wi-Fi 6,Anulowane,2026-05-30
+138,C038,Marek Kaczmarek,Stacja dokująca USB-C,Oczekuje na płatność,2026-06-07
+139,C039,Anna Mazur,Klawiatura mechaniczna,Dostarczone,2026-06-01
+140,C040,Aleksandra Kaczmarek,Laptop Pro X,Dostarczone,2026-05-28
+141,C041,Dominik Król,Kamera internetowa 4K,W transporcie,2026-06-09
+142,C042,Szymon Lewandowski,Krzesło ergonomiczne,W transporcie,2026-06-08
+143,C043,Bartosz Szymański,Kamera internetowa 4K,W transporcie,2026-06-01
+144,C044,Oliwia Rutkowska,Laptop Pro X,Dostarczone,2026-05-31
+145,C045,Hanna Wróbel,Stacja dokująca USB-C,Dostarczone,2026-05-27
+146,C046,Mateusz Jabłoński,Laptop Pro X,Oczekuje na płatność,2026-06-10
+147,C047,Patrycja Wójcik,Biurko regulowane,W transporcie,2026-06-04
+148,C048,Krzysztof Sikora,Kabel HDMI 2m,Dostarczone,2026-06-02
+149,C049,Sylwia Pawłowska,Biurko regulowane,Dostarczone,2026-06-02
+150,C050,Marta Kaczmarek,Krzesło ergonomiczne,Oczekuje na płatność,2026-06-07
+151,C051,Robert Jabłoński,Laptop Pro X,Dostarczone,2026-06-04
+152,C052,Bartosz Grabowski,Dysk SSD 1TB,Dostarczone,2026-06-10
+153,C053,Karolina Zając,Klawiatura mechaniczna,W transporcie,2026-05-31
+154,C054,Karolina Rutkowska,Biurko regulowane,Oczekuje na płatność,2026-06-07
+155,C055,Igor Chmielewski,Krzesło ergonomiczne,Dostarczone,2026-05-31
+156,C056,Kamil Zieliński,Mysz bezprzewodowa,W transporcie,2026-06-04
+157,C057,Piotr Michalski,Router Wi-Fi 6,Anulowane,2026-05-28
+158,C058,Tomasz Grabowski,Klawiatura mechaniczna,Oczekuje na płatność,2026-06-10
+159,C059,Beata Michalska,Laptop Pro X,Dostarczone,2026-06-04
+160,C060,Andrzej Adamczyk,Kamera internetowa 4K,Dostarczone,2026-05-29
+161,C061,Paulina Rutkowska,Podkładka pod mysz RGB,Dostarczone,2026-06-06
+162,C062,Łukasz Woźniak,Mysz bezprzewodowa,Dostarczone,2026-05-30
+163,C063,Dorota Szymańska,Monitor 27 cali,Dostarczone,2026-06-06
+164,C064,Zuzanna Adamczyk,Klawiatura mechaniczna,W transporcie,2026-06-03
+165,C065,Łukasz Bąk,Mikrofon pojemnościowy,Dostarczone,2026-06-04
+166,C066,Dominik Zieliński,Monitor 27 cali,Dostarczone,2026-05-31
+167,C067,Barbara Mazur,Podkładka pod mysz RGB,W transporcie,2026-05-30
+168,C068,Zuzanna Wójcik,Podkładka pod mysz RGB,Oczekuje na płatność,2026-06-10
+169,C069,Wojciech Rutkowski,Dysk SSD 1TB,Dostarczone,2026-06-04
+170,C070,Dorota Kowalska,Podkładka pod mysz RGB,Dostarczone,2026-06-01
+171,C071,Agnieszka Zając,Kabel HDMI 2m,W transporcie,2026-05-31
+172,C072,Magdalena Król,Mikrofon pojemnościowy,Dostarczone,2026-06-01
+173,C073,Adam Mazur,Mikrofon pojemnościowy,Dostarczone,2026-05-27
+174,C074,Patryk Szymański,Router Wi-Fi 6,Dostarczone,2026-05-31
+175,C075,Magdalena Krawczyk,Laptop Pro X,W transporcie,2026-06-09
+176,C076,Agnieszka Baran,Zestaw głośników 2.1,Dostarczone,2026-05-25
+177,C077,Małgorzata Piotrowska,Stacja dokująca USB-C,Dostarczone,2026-05-28
+178,C078,Dominik Mazur,Stacja dokująca USB-C,Anulowane,2026-05-30
+179,C079,Magdalena Czarnecka,Mikrofon pojemnościowy,W transporcie,2026-06-10
+180,C080,Iwona Michalska,Zestaw głośników 2.1,Dostarczone,2026-06-01
+181,C081,Michał Jabłoński,Kabel HDMI 2m,Oczekuje na płatność,2026-06-08
+182,C082,Kinga Baran,Monitor 27 cali,Oczekuje na płatność,2026-06-10
+183,C083,Krzysztof Kamiński,Mysz bezprzewodowa,Oczekuje na płatność,2026-06-08
+184,C084,Andrzej Wójcik,Laptop Pro X,Oczekuje na płatność,2026-06-10
+185,C085,Dorota Kozłowska,Zestaw głośników 2.1,W transporcie,2026-06-08
+186,C086,Andrzej Chmielewski,Mikrofon pojemnościowy,W transporcie,2026-06-09
+187,C087,Rafał Stępień,Słuchawki Bluetooth,Dostarczone,2026-06-01
+188,C088,Hanna Zając,Mikrofon pojemnościowy,Oczekuje na płatność,2026-06-10
+189,C089,Patrycja Piotrowska,Mikrofon pojemnościowy,W transporcie,2026-06-02
+190,C090,Marta Jabłońska,Kamera internetowa 4K,W transporcie,2026-06-03
+191,C091,Rafał Górski,Zestaw głośników 2.1,Dostarczone,2026-06-04
+192,C092,Krzysztof Wójcik,Kabel HDMI 2m,Dostarczone,2026-05-29
+193,C093,Filip Chmielewski,Router Wi-Fi 6,Dostarczone,2026-05-29
+194,C094,Krzysztof Kowalski,Laptop Pro X,W transporcie,2026-06-07
+195,C095,Grzegorz Zieliński,Laptop Pro X,W transporcie,2026-06-08
+196,C096,Karol Wiśniewski,Laptop Pro X,Anulowane,2026-06-07
+197,C097,Magda Bąk,Słuchawki Bluetooth,Oczekuje na płatność,2026-05-25
+198,C098,Sebastian Sawicki,Mikrofon pojemnościowy,W transporcie,2026-06-06
+199,C099,Łukasz Walczak,Klawiatura mechaniczna,Dostarczone,2026-06-05
+200,C100,Andrzej Dudek,Monitor 27 cali,Oczekuje na płatność,2026-06-07
+201,C101,Michał Stępień,Mikrofon pojemnościowy,Dostarczone,2026-06-01
+202,C102,Adam Rutkowski,Mikrofon pojemnościowy,W transporcie,2026-06-07
+203,C103,Katarzyna Lewandowska,Podkładka pod mysz RGB,Dostarczone,2026-06-04
+204,C104,Patryk Król,Router Wi-Fi 6,W transporcie,2026-06-06
+205,C105,Agnieszka Woźniak,Zestaw głośników 2.1,W transporcie,2026-06-08
+206,C106,Dawid Górski,Zestaw głośników 2.1,Dostarczone,2026-05-25
+207,C107,Paweł Kaczmarek,Dysk SSD 1TB,Dostarczone,2026-05-25
+208,C108,Artur Wójcik,Słuchawki Bluetooth,Dostarczone,2026-05-29
+209,C109,Artur Chmielewski,Klawiatura mechaniczna,Dostarczone,2026-05-26
+210,C110,Magda Woźniak,Mikrofon pojemnościowy,Dostarczone,2026-05-31
+211,C111,Andrzej Walczak,Klawiatura mechaniczna,Dostarczone,2026-06-06
+212,C112,Szymon Zieliński,Klawiatura mechaniczna,Oczekuje na płatność,2026-06-07
+213,C113,Jan Wróbel,Biurko regulowane,Oczekuje na płatność,2026-06-09
+214,C114,Maciej Rutkowski,Krzesło ergonomiczne,Dostarczone,2026-05-26
+215,C115,Damian Chmielewski,Stacja dokująca USB-C,Anulowane,2026-05-27
+216,C116,Maria Jankowska,Stacja dokująca USB-C,W transporcie,2026-05-26
+217,C117,Marcin Zieliński,Kamera internetowa 4K,Dostarczone,2026-06-01
+218,C118,Dorota Zielińska,Kamera internetowa 4K,Dostarczone,2026-05-29
+219,C119,Katarzyna Zielińska,Mysz bezprzewodowa,Anulowane,2026-05-28
+220,C120,Małgorzata Czarnecka,Router Wi-Fi 6,W transporcie,2026-06-08
+221,C121,Rafał Kamiński,Kabel HDMI 2m,Dostarczone,2026-06-05
+222,C122,Klaudia Adamczyk,Stacja dokująca USB-C,Dostarczone,2026-05-28
+223,C123,Karol Woźniak,Dysk SSD 1TB,Dostarczone,2026-06-03
+224,C124,Katarzyna Kamińska,Mysz bezprzewodowa,Dostarczone,2026-06-03
+225,C125,Filip Czarnecki,Laptop Pro X,Anulowane,2026-06-06
+226,C126,Jakub Grabowski,Dysk SSD 1TB,Dostarczone,2026-05-31
+227,C127,Aleksandra Woźniak,Dysk SSD 1TB,Dostarczone,2026-06-01
+228,C128,Łukasz Baran,Słuchawki Bluetooth,Dostarczone,2026-06-03
+229,C129,Igor Wójcik,Stacja dokująca USB-C,Anulowane,2026-05-28
+230,C130,Wojciech Lewandowski,Krzesło ergonomiczne,Dostarczone,2026-05-26
+231,C131,Marcin Bąk,Dysk SSD 1TB,Dostarczone,2026-06-05
+232,C132,Igor Wieczorek,Biurko regulowane,Dostarczone,2026-06-04
+233,C133,Alicja Woźniak,Dysk SSD 1TB,Dostarczone,2026-06-09
+234,C134,Paweł Górski,Podkładka pod mysz RGB,Oczekuje na płatność,2026-06-05
+235,C135,Patrycja Baran,Router Wi-Fi 6,W transporcie,2026-06-08
+236,C136,Justyna Czarnecka,Router Wi-Fi 6,Dostarczone,2026-05-30
+237,C137,Robert Chmielewski,Mysz bezprzewodowa,Dostarczone,2026-06-02
+238,C138,Sebastian Lewandowski,Mikrofon pojemnościowy,Dostarczone,2026-06-09
+239,C139,Barbara Szymańska,Krzesło ergonomiczne,Dostarczone,2026-06-02
+240,C140,Michał Chmielewski,Klawiatura mechaniczna,Oczekuje na płatność,2026-05-27
+241,C141,Mateusz Grabowski,Stacja dokująca USB-C,Dostarczone,2026-06-01
+242,C142,Ewa Szymańska,Krzesło ergonomiczne,W transporcie,2026-06-06
+243,C143,Adam Kaczmarek,Kabel HDMI 2m,Dostarczone,2026-06-04
+244,C144,Kamil Kozłowski,Stacja dokująca USB-C,W transporcie,2026-06-05
+245,C145,Monika Mazur,Zestaw głośników 2.1,Dostarczone,2026-06-02
+246,C146,Dorota Stępień,Monitor 27 cali,W transporcie,2026-06-02
+247,C147,Agnieszka Wójcik,Dysk SSD 1TB,Dostarczone,2026-05-31
+248,C148,Patrycja Jankowska,Mikrofon pojemnościowy,Oczekuje na płatność,2026-06-07
+249,C149,Kinga Jabłońska,Router Wi-Fi 6,Dostarczone,2026-06-01
+250,C150,Barbara Stępień,Mikrofon pojemnościowy,Oczekuje na płatność,2026-06-09
+251,C024,Bartosz Jankowski,Dysk SSD 1TB,Dostarczone,2026-06-04
+252,C076,Agnieszka Baran,Kamera internetowa 4K,Dostarczone,2026-05-30
+253,C057,Piotr Michalski,Klawiatura mechaniczna,Oczekuje na płatność,2026-06-09
+254,C001,Anna Kowalska,Mysz bezprzewodowa,W transporcie,2026-06-10
+255,C063,Dorota Szymańska,Słuchawki Bluetooth,Dostarczone,2026-05-28
+256,C079,Magdalena Czarnecka,Krzesło ergonomiczne,Dostarczone,2026-06-01
+257,C020,Mateusz Kamiński,Router Wi-Fi 6,Dostarczone,2026-05-25
+258,C095,Grzegorz Zieliński,Biurko regulowane,Anulowane,2026-06-02
+259,C122,Klaudia Adamczyk,Router Wi-Fi 6,Anulowane,2026-06-03
+260,C142,Ewa Szymańska,Dysk SSD 1TB,Oczekuje na płatność,2026-06-09
+261,C136,Justyna Czarnecka,Mikrofon pojemnościowy,Dostarczone,2026-06-03
+262,C089,Patrycja Piotrowska,Kabel HDMI 2m,Anulowane,2026-06-04
+263,C109,Artur Chmielewski,Słuchawki Bluetooth,Dostarczone,2026-06-02
+264,C141,Mateusz Grabowski,Laptop Pro X,Dostarczone,2026-05-27
+265,C085,Dorota Kozłowska,Kabel HDMI 2m,Dostarczone,2026-05-26
+266,C091,Rafał Górski,Dysk SSD 1TB,Anulowane,2026-06-03
+267,C117,Marcin Zieliński,Monitor 27 cali,Dostarczone,2026-05-28
+268,C070,Dorota Kowalska,Stacja dokująca USB-C,Dostarczone,2026-06-01
+269,C065,Łukasz Bąk,Zestaw głośników 2.1,Dostarczone,2026-06-08
+270,C060,Andrzej Adamczyk,Klawiatura mechaniczna,Oczekuje na płatność,2026-06-07
