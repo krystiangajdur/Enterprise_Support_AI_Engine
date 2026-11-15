@@ -52,7 +52,7 @@ def SQL_tool(customer_id):
     def check_order_status(order_id: str):
         clean_order_id = order_id.strip()
         if not clean_order_id:
-            return "Nie podano numeru zamówienia."
+            return None
         try:
             row = get_order(customer_id, clean_order_id)
         except Exception as e:
