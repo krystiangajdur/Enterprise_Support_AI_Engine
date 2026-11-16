@@ -12,5 +12,32 @@ services:
         volumes:
             - postgres_data:/var/lib/postgresql/data
 
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+            interval: 5s
+            timeout: 5s
+            retries: 10
+
+    app:
+    build: .
+    container_name: support_ai_app
+    restart: unless-stopped
+    env_file: .env
+    environment:
+    DB_HOST: postgres
+    DB_PORT: "5432"
+    depends_on:
+    postgres:
+        condition: service_healthy
+    ports:
+        - "8000:8000"
+    volumes:
+        - chroma_data:/code/chroma_db
+        - hf_cache:/root/.cache/huggingface
+
+
+
 volumes:
   postgres_data:
+  chroma_data:
+  hf_cache:
