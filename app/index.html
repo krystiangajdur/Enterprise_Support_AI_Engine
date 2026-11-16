@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ModaLoop Support</title>
+  <style>
+    :root {
+      --bg: #eef1f4;
+      --surface: #ffffff;
+      --ink: #17212b;
+      --muted: #5d6b7a;
+      --line: #d5dce3;
+      --accent: #1b6b4f;
+      --accent-ink: #ffffff;
+      --user-bg: #dcefe6;
+      --user-ink: #10261d;
+      --focus: #1b6b4f;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #101519;
+        --surface: #182027;
+        --ink: #e6ebf0;
+        --muted: #93a1b0;
+        --line: #2b3641;
+        --accent: #4fb88f;
+        --accent-ink: #08140f;
+        --user-bg: #1d3a2e;
+        --user-ink: #dff3ea;
+        --focus: #4fb88f;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .app {
+      max-width: 720px;
+      height: 100vh;
+      height: 100dvh;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+    }
+
+    header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 20px;
+    }
+    .title h1 { margin: 0; font-size: 1.15rem; font-weight: 650; letter-spacing: -0.01em; }
+    .title p { margin: 2px 0 0; font-size: .85rem; color: var(--muted); }
+
+    .account { display: flex; align-items: center; gap: 8px; }
+    .account label { font-size: .85rem; color: var(--muted); }
+
+    select, input, button { font: inherit; color: inherit; }
+    select {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 7px 10px;
+      max-width: 100%;
+    }
+
+    #chat {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .empty { margin: auto 0; max-width: 52ch; }
+    .empty h2 { margin: 0 0 6px; font-size: 1.05rem; font-weight: 650; }
+    .empty p { margin: 0 0 14px; color: var(--muted); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px;
+      cursor: pointer;
+    }
+    .chip:hover { border-color: var(--accent); }
+
+    .msg {
+      max-width: 82%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    .msg.user {
+      align-self: flex-end;
+      background: var(--user-bg);
+      color: var(--user-ink);
+      border-bottom-right-radius: 4px;
+    }
+    .msg.bot {
+      align-self: flex-start;
+      border: 1px solid var(--line);
+      border-bottom-left-radius: 4px;
+    }
+    .msg.pending { color: var(--muted); font-style: italic; }
+    .msg.error { border-color: #b3402e; }
+
+    form {
+      display: flex;
+      gap: 8px;
+      padding: 14px 20px;
+      border-top: 1px solid var(--line);
+    }
+    #question {
+      flex: 1;
+      min-width: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+    }
+    #send {
+      background: var(--accent);
+      color: var(--accent-ink);
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    #send:disabled { opacity: .5; cursor: default; }
+
+    select:focus-visible, #question:focus-visible, #send:focus-visible, .chip:focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 520px) {
+      header, #chat, form { padding-left: 14px; padding-right: 14px; }
+      .msg { max-width: 92%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="title">
+        <h1>ModaLoop Support</h1>
+        <p>Demo na fikcyjnych danych</p>
+      </div>
+      <div class="account">
+        <label for="customer">Klient</label>
+        <select id="customer">
+          <option value="C001">Anna Kowalska (C001)</option>
+          <option value="C002">Jan Nowak (C002)</option>
+          <option value="C020" selected>Mateusz Kamiński (C020)</option>
+          <option value="C021">Aleksandra Dąbrowska (C021)</option>
+        </select>
+      </div>
+    </header>
+
+    <main id="chat" aria-live="polite" aria-label="Rozmowa z asystentem"></main>
+
+    <form id="form">
+      <input id="question" type="text" autocomplete="off" maxlength="1000"
+             placeholder="Zadaj pytanie o zamówienie lub regulamin" aria-label="Twoje pytanie">
+      <button id="send" type="submit">Wyślij</button>
+    </form>
+  </div>
+
+  <script>
+    const chat = document.getElementById("chat");
+    const form = document.getElementById("form");
+    const input = document.getElementById("question");
+    const send = document.getElementById("send");
+    const customer = document.getElementById("customer");
+
+    const SUGGESTIONS = [
+      "Jaki status ma zamówienie 120?",
+      "Ile mam dni na zwrot?",
+      "Jak długo trwa dostawa?"
+    ];
+
+    let sessionId = crypto.randomUUID();
+    let busy = false;
+
+    // Wstawia tekst odpowiedzi bez innerHTML (wyjście modelu jest niezaufane).
+    // Obsługuje tylko pogrubienie **tak**, tworząc elementy ręcznie.
+    function renderText(el, text) {
+      el.textContent = "";
+      text.split(/(\*\*[^*]+\*\*)/g).forEach((part) => {
+        if (/^\*\*[^*]+\*\*$/.test(part)) {
+          const strong = document.createElement("strong");
+          strong.textContent = part.slice(2, -2);
+          el.appendChild(strong);
+        } else if (part) {
+          el.appendChild(document.createTextNode(part));
+        }
+      });
+    }
+
+    function addMessage(text, classes) {
+      const div = document.createElement("div");
+      div.className = "msg " + classes;
+      renderText(div, text);
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+      return div;
+    }
+
+    function showEmptyState() {
+      chat.textContent = "";
+      const box = document.createElement("div");
+      box.className = "empty";
+
+      const h = document.createElement("h2");
+      h.textContent = "W czym możemy pomóc?";
+      const p = document.createElement("p");
+      p.textContent = "Zapytaj o zamówienie lub regulamin sklepu. " +
+        "Zmień klienta u góry i zadaj to samo pytanie, aby sprawdzić, że każdy widzi tylko swoje zamówienia.";
+      const chips = document.createElement("div");
+      chips.className = "chips";
+
+      SUGGESTIONS.forEach((q) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "chip";
+        b.textContent = q;
+        b.addEventListener("click", () => sendQuestion(q));
+        chips.appendChild(b);
+      });
+
+      box.append(h, p, chips);
+      chat.appendChild(box);
+    }
+
+    async function sendQuestion(question) {
+      question = question.trim();
+      if (!question || busy) return;
+
+      const empty = chat.querySelector(".empty");
+      if (empty) empty.remove();
+
+      busy = true;
+      send.disabled = true;
+      addMessage(question, "user");
+      input.value = "";
+      const pending = addMessage("Piszę odpowiedź…", "bot pending");
+
+      try {
+        const res = await fetch("/ask", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Customer-Id": customer.value
+          },
+          body: JSON.stringify({ question: question, session_id: sessionId })
+        });
+
+        if (res.status === 401) throw new Error("Wybierz klienta, aby wysłać pytanie.");
+        if (res.status === 422) throw new Error("Pytanie jest puste lub dłuższe niż 1000 znaków.");
+        if (!res.ok) throw new Error("Asystent jest chwilowo niedostępny. Spróbuj ponownie za chwilę.");
+
+        const data = await res.json();
+        renderText(pending, data.answer);
+      } catch (err) {
+        const offline = err instanceof TypeError;
+        renderText(pending, offline ? "Brak połączenia z serwerem. Sprawdź, czy aplikacja działa." : err.message);
+        pending.classList.add("error");
+      } finally {
+        pending.classList.remove("pending");
+        busy = false;
+        send.disabled = false;
+        input.focus();
+        chat.scrollTop = chat.scrollHeight;
+      }
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      sendQuestion(input.value);
+    });
+
+    // Zmiana klienta = nowa tożsamość i nowa rozmowa (osobny session_id).
+    customer.addEventListener("change", () => {
+      sessionId = crypto.randomUUID();
+      showEmptyState();
+      input.focus();
+    });
+
+    showEmptyState();
+  </script>
+</body>
+</html>
