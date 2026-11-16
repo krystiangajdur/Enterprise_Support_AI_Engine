@@ -1,7 +1,11 @@
 from fastapi import FastAPI,Header, HTTPException
 from pydantic import BaseModel
+from pathlib import Path
+from fastapi.responses import FileResponse
 
 from app.agent import ask
+
+INDEX_FILE = Path(__file__).parent / "index.html"
 
 app = FastAPI(title = "Enterprise Support AI Engine")
 
@@ -20,3 +24,7 @@ def ask_endpoint(body: Question, x_customer_id: str | None = Header(default=None
         return Answer(answer = ask(body.question, customer_id = x_customer_id.strip(), session_id=body.session_id ))
     except Exception:
         raise HTTPException(status_code = 401, detail = "The assistant is temporarily unavailable")
+
+@app.get("/", include_in_schema=False)
+def index():
+    return FileResponse(INDEX_FILE)
