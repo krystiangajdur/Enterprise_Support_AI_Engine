@@ -10,7 +10,7 @@ host = DB_HOST
 port = int(DB_PORT)
 database = DB_NAME
 
-connection_string = f"postgresql://{username}:{password}@{host}:{port}/{database}"
+connection_string = f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}"
 
 print("Connecting to PostgreSQL...")
 engine = create_engine(connection_string)
