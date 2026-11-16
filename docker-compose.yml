@@ -1,41 +1,38 @@
 services:
-    postgres:
-        image: postgres:15-alpine
-        container_name: postgres_db
-        restart: always
-        environment:
-            POSTGRES_USER: ${DB_USER}
-            POSTGRES_PASSWORD: ${DB_PASSWORD}
-            POSTGRES_DB: ${DB_NAME}
-        ports:
-            - "5432:5432"
-        volumes:
-            - postgres_data:/var/lib/postgresql/data
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
-        healthcheck:
-            test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
-            interval: 5s
-            timeout: 5s
-            retries: 10
-
-    app:
+  app:
     build: .
     container_name: support_ai_app
     restart: unless-stopped
     env_file: .env
     environment:
-    DB_HOST: postgres
-    DB_PORT: "5432"
+      DB_HOST: postgres
+      DB_PORT: "5432"
     depends_on:
-    postgres:
+      postgres:
         condition: service_healthy
     ports:
-        - "8000:8000"
+      - "8000:8000"
     volumes:
-        - chroma_data:/code/chroma_db
-        - hf_cache:/root/.cache/huggingface
-
-
+      - chroma_data:/code/chroma_db
+      - hf_cache:/root/.cache/huggingface
 
 volumes:
   postgres_data:
