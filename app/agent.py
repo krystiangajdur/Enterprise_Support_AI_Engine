@@ -5,6 +5,7 @@ from langchain_core.tools import Tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_huggingface import HuggingFaceEmbeddings
 from contextlib import closing
+from langgraph.checkpoint.memory import InMemorySaver
 
 from app.config import CHROMA_DIR, EMBEDDING_MODEL, LLM_MODEL, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
 
@@ -73,6 +74,8 @@ def SQL_tool(customer_id):
 print("Inicjalizowanie modelu Gemini...")
 llm = ChatGoogleGenerativeAI(model = LLM_MODEL, timeout = 60, max_retries = 1)
 
+checkpointer = InMemorySaver()
+
 def build_agent(customer_id):
     return create_agent(
         model = llm,
@@ -88,7 +91,8 @@ def build_agent(customer_id):
             "Zawsze na końcu odpowiedzi dodaj: "
             "Jeśli odpowiedź cię nie satysfakcjonuje, spróbuj sformułować pytanie w inny sposób. "
             "Jak masz jeszcze jakieś pytania - zadaj je - postaram się odpowiedzieć najlepiej jak potrafię. :) "
-        )
+        ),
+        checkpointer=checkpointer
 )
 
 def extract_text(content):
@@ -99,14 +103,20 @@ def extract_text(content):
         if isinstance(block, dict) and block.get("type") == "text"
     )
 
-def ask(question, customer_id: str):
-    agent = build_agent(customer_id)
-    result = agent.invoke({"messages": [{"role":"user", "content": question}]})
+def ask(question: str, customer_id: str, session_id: str | None = None):
+    thread_id = f'{customer_id}: {session_id or 'default'}'
+    config = {'configurable': {'thread_id': thread_id}}
 
-    for m in result["messages"]:
+    agent = build_agent(customer_id)
+    result = agent.invoke({"messages": [{"role":"user", "content": question}]}, config)
+
+    msgs = result["messages"]
+    last_human = max(i for i, m in enumerate(msgs) if m.type == "human")
+    for m in msgs[last_human + 1:]:
         for call in getattr(m, "tool_calls", []) or []:
-            print(f'[narzedzie] {call['name']}({call['args']})')
-    return extract_text(result['messages'][-1].content)
+            print(f"[narzedzie] {call['name']}({call['args']})")
+
+    return extract_text(msgs[-1].content)
 
 if __name__ == "__main__":
     print("\nSystem agenta hybrydowego gotowy do pracy!\n")
@@ -123,7 +133,7 @@ if __name__ == "__main__":
     print("--- TEST 4 ---")
     print(f"\nOdpowiedź agenta:\n{ask('Co wczoraj jadłem na śniadanie?', 'C035')}\n")
 
-    print("--- TEST 4 ---")
+    print("--- TEST 5 ---")
     print(f"\nOdpowiedź agenta:\n{ask('Jaki czas do złożenia reklamacji?', 'C037')}\n")
 
 
