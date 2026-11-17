@@ -5,7 +5,7 @@
     "Dataset zawiera 60 scenariuszy w 6 kategoriach. Każdy scenariusz składa się z co najmniej jednego turn. Liczba turns nie jest równoznaczna z liczbą niezależnych konwersacji.",
   "Dla każdego przebiegu generowany jest nowy run_id, a session_id tworzone jest na podstawie run_id, scenario.id i session_key. Domyślna wartość session_key to default.",
   "W obrębie scenariusza zachowywana jest kolejność turns oraz kontekst rozmowy. Wartości customer_id i session_key zdefiniowane w turn mają pierwszeństwo przed wartościami scenariusza.",
-  "Pole expected_tools określa dokładną listę oczekiwanych wywołań narzędzi, z uwzględnieniem kolejności i powtórzeń. Brak pola oznacza brak sztywnego wymagania, natomiast pusta lista [] oznacza brak oczekiwanych wywołań.",
+  "Pole expected_tools określa zbiór narzędzi, które agent powinien użyć w danym turnie. Kolejność i liczba wywołań tego samego narzędzia nie mają znaczenia (agent może wielokrotnie przeformułować zapytanie). Brak pola lub wartość null oznacza brak wymagania, natomiast pusta lista [] oznacza, że agent nie powinien wywołać żadnego narzędzia.",
   "Pole checks zawiera nazwy reguł weryfikacyjnych implementowanych w evaluatorze. Sam dataset nie wykonuje testów.",
   "Pola reference_source i reference_required określają źródło danych referencyjnych. AI Judge otrzymuje niezależną referencję pochodzącą z dokumentu polityki sklepu lub PostgreSQL, a nie wyłącznie odpowiedź agenta.",
   "W przypadku pytań dotyczących regulaminu nie zakłada się zasad, które nie zostały potwierdzone w dokumencie PDF. Testy answer_supported_by_policy_or_uncertainty mogą zostać zaliczone również wtedy, gdy agent poprawnie wskazuje brak wystarczających informacji.",

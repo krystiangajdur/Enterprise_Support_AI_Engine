@@ -9,7 +9,7 @@ DATA_DIR = BASE_DIR / "data"
 CHROMA_DIR = BASE_DIR / "chroma_db"
 
 EVAL_DIR = BASE_DIR / "evaluation"
-RESULTS_DIR = EVAL_DIR / 'results'
+RESULTS_DIR = EVAL_DIR / "results"
 
 PDF_PATH = DATA_DIR / "ModaLoop_Regulamin_i_Polityka_Logistyczna.pdf"
 ORDERS_CSV = DATA_DIR / "customers_orders.csv"
