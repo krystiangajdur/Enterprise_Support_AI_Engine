@@ -178,7 +178,7 @@ def run_evaluation():
     print(f"Tool choice accuracy: {summary['tool_choice_accuracy']}")
     print(f"Tool choice evaluated: {summary['tool_choice_evaluated']}")
     print(f"Execution errors: {summary['execution_errors']}")
-    print(f"Results saved to: {RESULTS_DIR}")
+    print(f"Results saved to: {RESULTS_DIR / f'results-{run_id}.json'}")
 
 
 if __name__ == "__main__":
