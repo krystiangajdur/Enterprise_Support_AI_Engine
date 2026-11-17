@@ -180,13 +180,18 @@ def run_evaluation():
 
     run_id = uuid.uuid4().hex[:12]
     results = []
+    turn_count = 0
 
-    for i, scenario in enumerate(dataset["scenarios"], start=1):
-        results.extend(evaluate_scenario(scenario, run_id))
+    for scenario in dataset["scenarios"]:
+        scenario_results = evaluate_scenario(scenario, run_id)
+        results.extend(scenario_results)
 
-        if i % 6 == 0:
-            print("\nPause for 60 seconds to limit the API calls...")
+        turn_count += len(scenario_results)
+
+        if turn_count >= 7:
+            print("Pausing for 60 seconds...")
             time.sleep(60)
+            turn_count = 0
 
     report = save_results(run_id, results)
 
