@@ -39,6 +39,13 @@ def get_order(customer_id: str, order_id: str):
     clean_customer_id = customer_id.strip()
     clean_order_id = order_id.strip()
 
+    if not (
+        clean_order_id.isascii()
+        and clean_order_id.isdecimal()
+        and 0 < int(clean_order_id) <= 9223372036854775807
+    ):
+        raise ValueError("Invalid order ID format")
+
     with closing(psycopg2.connect(
         user=DB_READER_USER,
         password=DB_READER_PASSWORD,
@@ -58,36 +65,27 @@ def SQL_tool(customer_id: str):
 
     @tool("CheckOrderStatus")
     def check_order_status(order_id: str) -> str:
-        """
-        Sprawdza status, produkt i datę zakupu
-        konkretnego zamówienia klienta ModaLoop.
-        Wymaga numeru zamówienia.
-        """
-        clean_order_id = order_id.strip()
-
-        if not clean_order_id:
-            return "Nie podano numeru zamówienia."
+        """Check the status of a customer's order using its numeric order ID."""
 
         try:
-            row = get_order(customer_id, clean_order_id)
+            order = get_order(customer_id, order_id)
 
-        except Exception as e:
-            print(f"[BŁĄD POŁĄCZENIA Z BAZĄ]: {e}")
-            return "Wystąpił błąd podczas łączenia z bazą danych."
-
-        if row is None:
+        except ValueError:
             return (
-                f"Nie znalazłem zamówienia o numerze "
-                f"{clean_order_id} na Twoim koncie."
+                "Nieprawidłowy format numeru zamówienia. "
+                "Numer zamówienia musi składać się wyłącznie z cyfr."
             )
 
-        product_name, status, order_date = row
+        if order is None:
+            return "Nie znaleziono zamówienia o podanym numerze na koncie klienta."
+
+        product_name, status, order_date = order
 
         return (
-            f"Zamówienie {clean_order_id}: "
-            f"Produkt: {product_name}\n"
-            f"Status: {status}\n"
-            f"Data zakupu: {order_date}"
+            f"Produkt: {product_name}. "
+            f"Status: {status}. "
+            f"Data złożenia zamówienia: {order_date}. "
+            "Data doręczenia nie jest dostępna."
         )
 
     return check_order_status
@@ -102,22 +100,26 @@ def build_agent(customer_id):
         model = llm,
         tools = [search_internal_policy, SQL_tool(customer_id)],
         system_prompt = (
-            "Jesteś asystentem obsługi klienta sklepu ModaLoop. Pomagasz w sprawach zamówień, "
-            "logistyki i regulaminu sklepu. "
-            "Klient jest już zweryfikowany: nigdy nie pytaj o jego identyfikator ani dane osobowe, "
-            "o zamówienie pytaj tylko o numer. "
-            "Możesz odwoływać się do wcześniejszej części tej rozmowy, np. odpowiedzieć na pytanie "
-            "uzupełniające bez powtarzania numeru zamówienia albo przypomnieć, o co klient pytał. "
-            "Jeśli użytkownik zapyta o coś niezwiązanego ze sklepem (pogoda, aktualna data, porady "
-            "życiowe, wiedza ogólna), grzecznie odmów i napisz, że zajmujesz się wyłącznie obsługą "
-            "sklepu ModaLoop. "
-            "Odpowiadaj po polsku. Na pytania o regulamin odpowiadaj WYŁĄCZNIE na podstawie wyników "
-            "narzędzia PolicySearch, a jeśli narzędzie nie zawiera odpowiedzi, powiedz, że nie masz "
-            "tej informacji w regulaminie. Dla każdego pytania użyj PolicySearch maksymalnie dwa razy. "
-            "Jeśli wynik nie zawiera odpowiedzi, powiedz, że w regulaminie nie ma tej informacji, "
-            "zamiast szukać ponownie. Dane o zamówieniach podawaj WYŁĄCZNIE na podstawie "
-            "wyniku narzędzia CheckOrderStatus."
+            "Jesteś polskojęzycznym asystentem obsługi klienta sklepu ModaLoop. "
+            "Pomagasz wyłącznie w sprawach zamówień, dostaw, zwrotów i regulaminu. "
+            "Na pytania spoza tego zakresu grzecznie odmawiaj. "
 
+            "Klient jest już zweryfikowany. Nie pytaj o jego identyfikator ani dane osobowe. "
+            "Jeśli numer zamówienia nie wynika z pytania ani z historii bieżącej rozmowy, "
+            "poproś o jego podanie zamiast wywoływać CheckOrderStatus. "
+
+            "Numer zamówienia musi składać się wyłącznie z cyfr. "
+            "W przypadku nieprawidłowego formatu poproś o poprawny numer, "
+            "nie zgłaszaj błędu bazy danych. "
+
+            "Informacje o zamówieniach podawaj wyłącznie na podstawie CheckOrderStatus "
+            "lub danych uzyskanych z tego narzędzia wcześniej w bieżącej rozmowie. "
+            "Pole order_date oznacza datę złożenia zamówienia, nie doręczenia. "
+            "Nie wymyślaj daty dostawy na podstawie statusu 'Dostarczone'. "
+
+            "Na pytania o regulamin odpowiadaj wyłącznie na podstawie PolicySearch. "
+            "Użyj tego narzędzia maksymalnie dwa razy na pytanie. "
+            "Jeśli brakuje informacji, powiedz, że nie ma jej w regulaminie."
         ),
         checkpointer=checkpointer
 )
