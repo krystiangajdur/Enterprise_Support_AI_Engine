@@ -22,3 +22,11 @@ def calculate_accuracy(results):
         return None
 
     return sum(results) / len(results) * 100
+
+def classify_error(exc):
+    error_message = str(exc).upper()
+
+    if "RESOURCE_EXHAUSTED" in error_message or "429" in error_message:
+        return "RATE_LIMIT"
+
+    return "EXECUTION_ERROR"
