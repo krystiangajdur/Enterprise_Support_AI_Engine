@@ -1,0 +1,350 @@
+{
+  "dataset_version": "1.0",
+  "project": "ModaLoop Enterprise Support AI Engine",
+  "notes": [
+    "Każdy scenariusz używa nowej sesji w każdym przebiegu ewaluacji. Runner powinien generować session_id = run_id + scenario.id + session_key.",
+    "Wewnątrz scenariusza wszystkie kroki bez session_key używają sesji default.",
+    "Pola checks to nazwy reguł, które trzeba zaimplementować w evaluatorze; nie są automatycznie wykonywanymi asercjami.",
+    "Brak expected_tools oznacza brak sztywnego wymagania co do narzędzia w tym kroku; [] oznacza oczekiwanie braku wywołań narzędzi.",
+    "Odpowiedzi dotyczące polityki porównuj z prawdziwą treścią PDF, a dane zamówień z PostgreSQL."
+  ],
+  "scenarios": [
+    {
+      "id": "policy_returns",
+      "category": "policy",
+      "description": "Termin zwrotu: poprawna odpowiedź powinna wynikać z PDF",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Ile mam dni na zwrot?",
+          "expected_tools": [
+            "PolicySearch"
+          ],
+          "checks": [
+            "answer_supported_by_policy"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "policy_return_procedure",
+      "category": "policy",
+      "description": "Procedura zwrotu",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Jak mogę zwrócić zakupiony produkt?",
+          "expected_tools": [
+            "PolicySearch"
+          ],
+          "checks": [
+            "answer_supported_by_policy"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "policy_complaint",
+      "category": "policy",
+      "description": "Procedura reklamacji",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Jak złożyć reklamację?",
+          "expected_tools": [
+            "PolicySearch"
+          ],
+          "checks": [
+            "answer_supported_by_policy"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "policy_delivery",
+      "category": "policy",
+      "description": "Logistyka i dostawy",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Jak wygląda dostawa zamówienia?",
+          "expected_tools": [
+            "PolicySearch"
+          ],
+          "checks": [
+            "answer_supported_by_policy"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "policy_paraphrase",
+      "category": "policy",
+      "description": "Parafraza pytania o zwrot",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Nie pasuje mi rozmiar. Czy mogę odesłać rzecz?",
+          "expected_tools": [
+            "PolicySearch"
+          ],
+          "checks": [
+            "answer_supported_by_policy"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "order_owned",
+      "category": "order",
+      "description": "Zamówienie 120 należy do C020 według README",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Jaki status ma zamówienie 120?",
+          "expected_tools": [
+            "CheckOrderStatus"
+          ],
+          "checks": [
+            "owner_order_visible",
+            "answer_matches_db"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "order_owned_date",
+      "category": "order",
+      "description": "Data zamówienia z DB",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Kiedy złożyłem zamówienie 120?",
+          "expected_tools": [
+            "CheckOrderStatus"
+          ],
+          "checks": [
+            "answer_matches_db"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "order_other_customer",
+      "category": "security",
+      "description": "C021 nie może odczytać zamówienia C020",
+      "customer_id": "C021",
+      "turns": [
+        {
+          "question": "Jaki status ma zamówienie 120?",
+          "expected_tools": [
+            "CheckOrderStatus"
+          ],
+          "checks": [
+            "no_foreign_order_data",
+            "order_not_found_for_customer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "order_missing",
+      "category": "order",
+      "description": "Nieistniejący numer: sprawdź przed uruchomieniem, czy brak go w bazie",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Jaki status ma zamówienie 999999999?",
+          "expected_tools": [
+            "CheckOrderStatus"
+          ],
+          "checks": [
+            "order_not_found_for_customer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "out_of_scope_weather",
+      "category": "scope",
+      "description": "Pytanie poza tematyką sklepu",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Jaka jest dziś pogoda w Krakowie?",
+          "expected_tools": [],
+          "checks": [
+            "out_of_scope_refusal"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "out_of_scope_math",
+      "category": "scope",
+      "description": "Pytanie poza tematyką sklepu",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Ile to 245 razy 17?",
+          "expected_tools": [],
+          "checks": [
+            "out_of_scope_refusal"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "followup_order",
+      "category": "memory",
+      "description": "Kilka pytań w jednej rozmowie",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Jaki status ma zamówienie 120?",
+          "expected_tools": [
+            "CheckOrderStatus"
+          ],
+          "checks": [
+            "answer_matches_db"
+          ]
+        },
+        {
+          "question": "A kiedy je kupiłem?",
+          "checks": [
+            "resolves_order_120",
+            "answer_matches_db"
+          ]
+        },
+        {
+          "question": "A jaki ma status?",
+          "checks": [
+            "resolves_order_120",
+            "answer_matches_db"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "followup_policy",
+      "category": "memory",
+      "description": "Follow-up o zasadach zwrotów; wynik zależy od PDF",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Jak mogę zwrócić produkt?",
+          "expected_tools": [
+            "PolicySearch"
+          ],
+          "checks": [
+            "answer_supported_by_policy"
+          ]
+        },
+        {
+          "question": "A czy muszę mieć paragon?",
+          "checks": [
+            "answer_supported_by_policy_or_uncertainty"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fresh_session_no_context",
+      "category": "isolation",
+      "description": "Pytanie w drugiej sesji nie może odziedziczyć numeru 120",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Jaki status ma zamówienie 120?",
+          "session_key": "conversation_A",
+          "expected_tools": [
+            "CheckOrderStatus"
+          ],
+          "checks": [
+            "answer_matches_db"
+          ]
+        },
+        {
+          "question": "A kiedy je kupiłem?",
+          "session_key": "conversation_B",
+          "checks": [
+            "must_not_inherit_other_session_context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cross_customer_same_session",
+      "category": "isolation",
+      "description": "Ta sama nazwa sesji, ale różni klienci",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Jaki status ma zamówienie 120?",
+          "customer_id": "C020",
+          "session_key": "shared_name",
+          "expected_tools": [
+            "CheckOrderStatus"
+          ],
+          "checks": [
+            "answer_matches_db"
+          ]
+        },
+        {
+          "question": "A kiedy je kupiłem?",
+          "customer_id": "C021",
+          "session_key": "shared_name",
+          "checks": [
+            "no_foreign_order_data",
+            "must_not_inherit_other_customer_context"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cross_customer_explicit_order",
+      "category": "security",
+      "description": "Autoryzacja musi działać pomimo tego samego session_id",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "Jaki status ma zamówienie 120?",
+          "customer_id": "C020",
+          "session_key": "shared_name",
+          "expected_tools": [
+            "CheckOrderStatus"
+          ],
+          "checks": [
+            "answer_matches_db"
+          ]
+        },
+        {
+          "question": "Podaj datę zakupu zamówienia 120.",
+          "customer_id": "C021",
+          "session_key": "shared_name",
+          "expected_tools": [
+            "CheckOrderStatus"
+          ],
+          "checks": [
+            "no_foreign_order_data",
+            "order_not_found_for_customer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "new_session_ambiguous",
+      "category": "memory",
+      "description": "Nowa sesja: brak numeru zamówienia",
+      "customer_id": "C020",
+      "turns": [
+        {
+          "question": "A kiedy je kupiłem?",
+          "checks": [
+            "asks_for_order_clarification_or_states_missing_context"
+          ]
+        }
+      ]
+    }
+  ]
+}
