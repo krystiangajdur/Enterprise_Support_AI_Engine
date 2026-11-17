@@ -18,6 +18,10 @@ ORDERS_CSV = DATA_DIR / "customers_orders.csv"
 
 EVALUATION_JSON = EVAL_DIR / "dataset.json"
 
+CHUNKS_FILE = EVAL_DIR / "chunks.json"
+GOLD_FILE = EVAL_DIR / "retrieval_gold.json"
+RESULTS_FILE = EVAL_DIR / "results" / "retrieval_results.json"
+
 EMBEDDING_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"
 LLM_MODEL = "gemini-3.5-flash-lite"
 

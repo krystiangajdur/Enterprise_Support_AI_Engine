@@ -1,0 +1,254 @@
+{
+  "run_id": "de3b9a16ac79",
+  "created_at": "2026-11-17T18:09:24.254604+00:00",
+  "evaluation_summary": {
+    "total_turns": 11,
+    "tool_choice_accuracy": 100.0,
+    "tool_choice_evaluated": 9,
+    "execution_success_rate": 81.81818181818183,
+    "execution_errors": 2,
+    "rate_limit_errors": 2,
+    "other_errors": 0
+  },
+  "results": [
+    {
+      "scenario_id": "order_owned_short",
+      "category": "order",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-de3b9a16ac79-order_owned_short-default",
+      "question": "Zamówienie 120 — jaki ma status?",
+      "answer": "Twoje zamówienie numer 120 (Produkt: Mysz bezprzewodowa) ma status **Dostarczone**, a zostało zakupione 2026-06-02.",
+      "actual_tools": [
+        "CheckOrderStatus"
+      ],
+      "expected_tools": [
+        "CheckOrderStatus"
+      ],
+      "latency_seconds": 1.634,
+      "checks": {
+        "owner_order_visible": "NOT_EVALUATED",
+        "answer_matches_db": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null,
+      "error_type": null
+    },
+    {
+      "scenario_id": "order_missing_status",
+      "category": "order",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-de3b9a16ac79-order_missing_status-default",
+      "question": "Jaki status ma zamówienie 999999999?",
+      "answer": "Nie znalazłem zamówienia o numerze 999999999 na Twoim koncie. Upewnij się, że podajesz poprawny numer zamówienia.",
+      "actual_tools": [
+        "CheckOrderStatus"
+      ],
+      "expected_tools": [
+        "CheckOrderStatus"
+      ],
+      "latency_seconds": 1.858,
+      "checks": {
+        "order_not_found_for_customer": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null,
+      "error_type": null
+    },
+    {
+      "scenario_id": "order_missing_date",
+      "category": "order",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-de3b9a16ac79-order_missing_date-default",
+      "question": "Kiedy kupiłem zamówienie 999999999?",
+      "answer": "Nie znalazłem zamówienia o numerze 999999999 na Twoim koncie. Upewnij się, że podany numer jest poprawny.",
+      "actual_tools": [
+        "CheckOrderStatus"
+      ],
+      "expected_tools": [
+        "CheckOrderStatus"
+      ],
+      "latency_seconds": 1.598,
+      "checks": {
+        "order_not_found_for_customer": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null,
+      "error_type": null
+    },
+    {
+      "scenario_id": "order_missing_product",
+      "category": "order",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-de3b9a16ac79-order_missing_product-default",
+      "question": "Co było w zamówieniu 999999999?",
+      "answer": "Nie znalazłem zamówienia o numerze 999999999 na Twoim koncie. Upewnij się, że podany numer jest poprawny.",
+      "actual_tools": [
+        "CheckOrderStatus"
+      ],
+      "expected_tools": [
+        "CheckOrderStatus"
+      ],
+      "latency_seconds": 1.841,
+      "checks": {
+        "order_not_found_for_customer": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null,
+      "error_type": null
+    },
+    {
+      "scenario_id": "order_zeros",
+      "category": "order",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-de3b9a16ac79-order_zeros-default",
+      "question": "Jaki status ma zamówienie 000000120?",
+      "answer": "Zamówienie o numerze 000000120 zostało złożone 2 czerwca 2026 roku, dotyczy produktu \"Mysz bezprzewodowa\" i ma status **dostarczone**.",
+      "actual_tools": [
+        "CheckOrderStatus"
+      ],
+      "expected_tools": [
+        "CheckOrderStatus"
+      ],
+      "latency_seconds": 1.319,
+      "checks": {
+        "answer_matches_db_or_not_found": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null,
+      "error_type": null
+    },
+    {
+      "scenario_id": "order_alphanumeric",
+      "category": "order",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-de3b9a16ac79-order_alphanumeric-default",
+      "question": "Jaki status ma zamówienie ABC-120?",
+      "answer": "Przepraszam, obecnie wystąpił problem techniczny z połączeniem z bazą danych i nie mogę sprawdzić statusu zamówienia ABC-120. Proszę spróbować ponownie za chwilę.",
+      "actual_tools": [
+        "CheckOrderStatus"
+      ],
+      "expected_tools": [
+        "CheckOrderStatus"
+      ],
+      "latency_seconds": 1.558,
+      "checks": {
+        "answer_matches_db_or_not_found": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null,
+      "error_type": null
+    },
+    {
+      "scenario_id": "order_spaced",
+      "category": "order",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-de3b9a16ac79-order_spaced-default",
+      "question": "Czy możesz podać status mojego zamówienia numer 120?",
+      "answer": "Twoje zamówienie numer 120 (Mysz bezprzewodowa) zostało dostarczone. Zostało ono zakupione 2 czerwca 2026 roku.",
+      "actual_tools": [
+        "CheckOrderStatus"
+      ],
+      "expected_tools": [
+        "CheckOrderStatus"
+      ],
+      "latency_seconds": 2.562,
+      "checks": {
+        "owner_order_visible": "NOT_EVALUATED",
+        "answer_matches_db": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null,
+      "error_type": null
+    },
+    {
+      "scenario_id": "order_missing_number",
+      "category": "order",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-de3b9a16ac79-order_missing_number-default",
+      "question": "Jaki jest status mojego zamówienia?",
+      "answer": "Aby sprawdzić status zamówienia, potrzebuję jego numeru. Czy możesz mi go podać?",
+      "actual_tools": [],
+      "expected_tools": [],
+      "latency_seconds": 0.559,
+      "checks": {
+        "asks_for_order_clarification_or_states_missing_context": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null,
+      "error_type": null
+    },
+    {
+      "scenario_id": "order_multi_intent",
+      "category": "order",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-de3b9a16ac79-order_multi_intent-default",
+      "question": "Jaki jest status zamówienia 120 i kiedy je kupiłem?",
+      "answer": "Twoje zamówienie (nr 120) zostało kupione 2026-06-02, a jego status to: dostarczone. Zamówiony produkt to mysz bezprzewodowa.",
+      "actual_tools": [
+        "CheckOrderStatus"
+      ],
+      "expected_tools": [
+        "CheckOrderStatus"
+      ],
+      "latency_seconds": 1.759,
+      "checks": {
+        "owner_order_visible": "NOT_EVALUATED",
+        "answer_matches_db": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null,
+      "error_type": null
+    },
+    {
+      "scenario_id": "order_product_and_date",
+      "category": "order",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-de3b9a16ac79-order_product_and_date-default",
+      "question": "Co kupiłem w zamówieniu 120 i którego dnia?",
+      "answer": null,
+      "actual_tools": null,
+      "expected_tools": [
+        "CheckOrderStatus"
+      ],
+      "latency_seconds": 0.939,
+      "checks": {
+        "owner_order_visible": "NOT_EVALUATED",
+        "answer_matches_db": "NOT_EVALUATED",
+        "tool_choice": "ERROR"
+      },
+      "error": "Error calling model 'gemini-3.5-flash-lite' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite, description: Generate content requests per minute limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.\\nPlease retry in 35.775626113s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://aistudio.google.com/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'description': 'Generate content requests per minute limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.', 'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}",
+      "error_type": "RATE_LIMIT"
+    },
+    {
+      "scenario_id": "order_polite",
+      "category": "order",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-de3b9a16ac79-order_polite-default",
+      "question": "Dzień dobry, sprawdzisz proszę moje zamówienie 120?",
+      "answer": null,
+      "actual_tools": null,
+      "expected_tools": [
+        "CheckOrderStatus"
+      ],
+      "latency_seconds": 0.199,
+      "checks": {
+        "owner_order_visible": "NOT_EVALUATED",
+        "answer_matches_db": "NOT_EVALUATED",
+        "tool_choice": "ERROR"
+      },
+      "error": "Error calling model 'gemini-3.5-flash-lite' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite, description: Generate content requests per minute limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.\\nPlease retry in 35.576137084s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://aistudio.google.com/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'description': 'Generate content requests per minute limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.', 'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '35s'}]}}",
+      "error_type": "RATE_LIMIT"
+    }
+  ]
+}
