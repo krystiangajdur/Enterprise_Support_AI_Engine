@@ -1,0 +1,199 @@
+{
+  "run_id": "dc4565ef6fa4",
+  "created_at": "2026-11-17T17:56:31.130339+00:00",
+  "evaluation_summary": {
+    "total_turns": 9,
+    "tool_choice_accuracy": 100.0,
+    "tool_choice_evaluated": 7,
+    "execution_errors": 2
+  },
+  "results": [
+    {
+      "scenario_id": "policy_return_paraphrase",
+      "category": "policy",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-dc4565ef6fa4-policy_return_paraphrase-default",
+      "question": "W jakim czasie po zakupie mogę odesłać produkt?",
+      "answer": "W sklepie ModaLoop masz prawo odstąpić od umowy i odesłać produkt bez podania przyczyny w wydłużonym terminie **10 lat** od dnia otrzymania towaru (Sprzedawca wydłuża ustawowy termin 14 dni). Wystarczy wysłać stosowne oświadczenie przed upływem tego terminu.",
+      "actual_tools": [
+        "PolicySearch"
+      ],
+      "expected_tools": [
+        "PolicySearch"
+      ],
+      "latency_seconds": 3.124,
+      "checks": {
+        "answer_supported_by_policy_or_uncertainty": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null
+    },
+    {
+      "scenario_id": "policy_return_procedure",
+      "category": "policy",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-dc4565ef6fa4-policy_return_procedure-default",
+      "question": "Jak mogę zwrócić zakupiony produkt?",
+      "answer": "Aby zwrócić zakupiony produkt w sklepie ModaLoop, możesz skorzystać z jednej z następujących metod:\n\n1. **Przez panel klienta (najwygodniej):** Zaloguj się na swoje konto, przejdź do sekcji „Moje zwroty” i wygeneruj bezpłatną etykietę zwrotną. Zwrot możesz nadać w Paczkomacie InPost lub punkcie Orlen Paczka.\n2. **Kurierem:** Możesz zamówić kuriera, który odbierze paczkę bezpośrednio z Twojego adresu (koszt tej usługi wynosi 89 zł).\n3. **Zwrot z zagranicy:** Odbywa się na koszt klienta.\n\n**Ważne informacje dotyczące zwracanego towaru:**\n* Masz aż **10 lat** od dnia otrzymania towaru na odstąpienie od umowy (Sklep ModaLoop wydłużył ustawowy termin).\n* Towar powinien być w stanie niezmienionym, posiadać oryginalne metki oraz opakowanie (dopuszczalne jest przymierzenie produktu w taki sposób, jak w sklepie stacjonarnym).\n* Pamiętaj, że prawo odstąpienia nie dotyczy m.in. bielizny, kostiumów kąpielowych, produktów higienicznych po zerwaniu plomby oraz towarów przygotowanych na indywidualne zamówienie.\n* Zwrot środków następuje w ciągu 45 dni od otrzymania zwracanego towaru tą samą metodą płatności, jakiej użyto przy zakupie.",
+      "actual_tools": [
+        "PolicySearch"
+      ],
+      "expected_tools": [
+        "PolicySearch"
+      ],
+      "latency_seconds": 2.689,
+      "checks": {
+        "answer_supported_by_policy_or_uncertainty": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null
+    },
+    {
+      "scenario_id": "policy_return_steps",
+      "category": "policy",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-dc4565ef6fa4-policy_return_steps-default",
+      "question": "Co powinienem zrobić krok po kroku, żeby zgłosić zwrot?",
+      "answer": "Oto kroki, które należy wykonać, aby zgłosić zwrot w sklepie ModaLoop:\n\n1. Zaloguj się na swoje konto w sklepie.\n2. Przejdź do panelu **„Moje zwroty”**.\n3. Wygeneruj bezpłatną etykietę zwrotną (do wyboru: Paczkomat InPost lub punkt Orlen Paczka). *Uwaga: Istnieje również możliwość zwrotu kurierem odbierającym z adresu, jednak wiąże się to z kosztem 89 zł.*\n4. Przygotuj towar – powinien być w stanie niezmienionym, posiadać metki oraz oryginalne opakowanie.\n5. Nadaj przesyłkę zwrotną za pomocą wybranej metody.",
+      "actual_tools": [
+        "PolicySearch"
+      ],
+      "expected_tools": [
+        "PolicySearch"
+      ],
+      "latency_seconds": 3.424,
+      "checks": {
+        "answer_supported_by_policy_or_uncertainty": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null
+    },
+    {
+      "scenario_id": "policy_return_shipping",
+      "category": "policy",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-dc4565ef6fa4-policy_return_shipping-default",
+      "question": "Gdzie mam wysłać zwracany produkt?",
+      "answer": "Zwrotu można dokonać w bardzo prosty sposób za pomocą panelu „Moje zwroty” na swoim Koncie w naszym sklepie. Tam możesz wygenerować bezpłatną etykietę zwrotną do wybranego Paczkomatu InPost lub punktu Orlen Paczka. \n\nMożesz również zdecydować się na zwrot kurierem, który odbierze paczkę bezpośrednio z Twojego adresu (koszt tej usługi to 89 zł).",
+      "actual_tools": [
+        "PolicySearch"
+      ],
+      "expected_tools": [
+        "PolicySearch"
+      ],
+      "latency_seconds": 2.611,
+      "checks": {
+        "answer_supported_by_policy_or_uncertainty": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null
+    },
+    {
+      "scenario_id": "policy_return_cost",
+      "category": "policy",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-dc4565ef6fa4-policy_return_cost-default",
+      "question": "Kto ponosi koszt odesłania zwracanego towaru?",
+      "answer": "Zgodnie z regulaminem sklepu ModaLoop, koszty odesłania zwracanego towaru zależą od wybranej formy zwrotu:\n\n* **Przesyłka z Polski:** Możesz skorzystać z bezpłatnej etykiety zwrotnej generowanej w panelu „Moje zwroty” na swoim koncie (dotyczy Paczkomatów InPost oraz punktów Orlen Paczka).\n* **Zwrot kurierem:** Jeśli wybierzesz opcję odebrania przesyłki zwrotnej przez kuriera bezpośrednio z adresu, koszt takiej usługi wynosi 89 zł.\n* **Zwroty z zagranicy:** Odbywają się w całości na koszt klienta. \n\nSklep zwraca Ci cenę towaru oraz koszt najtańszej standardowej dostawy (nie zwraca natomiast opłaty za pobranie, jeśli była wybrana).",
+      "actual_tools": [
+        "PolicySearch",
+        "PolicySearch"
+      ],
+      "expected_tools": [
+        "PolicySearch"
+      ],
+      "latency_seconds": 3.151,
+      "checks": {
+        "answer_supported_by_policy_or_uncertainty": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null
+    },
+    {
+      "scenario_id": "policy_return_condition",
+      "category": "policy",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-dc4565ef6fa4-policy_return_condition-default",
+      "question": "Czy mogę zwrócić produkt, jeśli go przymierzyłem?",
+      "answer": "Tak, możesz zwrócić produkt, o ile został przymierzony w taki sposób, w jaki zrobiłbyś to w sklepie stacjonarnym. \n\nTowar powinien być zwrócony w stanie niezmienionym, z metkami i w oryginalnym opakowaniu. Należy jednak pamiętać, że ewentualne ślady użytkowania, zapachy perfum lub dymu, a także zabrudzenia czy uszkodzenia mogą skutkować obniżeniem kwoty zwrotu. \n\nWyjątkiem – w kwestii zwrotów – są niektóre produkty, takie jak bielizna, kostiumy kąpielowe oraz produkty higieniczne (jeśli zepsuto lub zdarto plombę), a także towary wykonane na indywidualne zamówienie.",
+      "actual_tools": [
+        "PolicySearch"
+      ],
+      "expected_tools": [
+        "PolicySearch"
+      ],
+      "latency_seconds": 2.039,
+      "checks": {
+        "answer_supported_by_policy_or_uncertainty": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null
+    },
+    {
+      "scenario_id": "policy_return_receipt",
+      "category": "policy",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-dc4565ef6fa4-policy_return_receipt-default",
+      "question": "Czy do zwrotu potrzebuję paragonu?",
+      "answer": "W regulaminie sklepu ModaLoop nie ma informacji dotyczącej tego, czy do zwrotu potrzebny jest paragon.",
+      "actual_tools": [
+        "PolicySearch",
+        "PolicySearch"
+      ],
+      "expected_tools": [
+        "PolicySearch"
+      ],
+      "latency_seconds": 3.44,
+      "checks": {
+        "answer_supported_by_policy_or_uncertainty": "NOT_EVALUATED",
+        "tool_choice": "PASS"
+      },
+      "error": null
+    },
+    {
+      "scenario_id": "policy_complaint",
+      "category": "policy",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-dc4565ef6fa4-policy_complaint-default",
+      "question": "Jak mogę złożyć reklamację?",
+      "answer": null,
+      "actual_tools": null,
+      "expected_tools": [
+        "PolicySearch"
+      ],
+      "latency_seconds": 0.997,
+      "checks": {
+        "answer_supported_by_policy_or_uncertainty": "NOT_EVALUATED",
+        "tool_choice": "ERROR"
+      },
+      "error": "Error calling model 'gemini-3.5-flash-lite' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite, description: Generate content requests per minute limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.\\nPlease retry in 28.874822945s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://aistudio.google.com/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'description': 'Generate content requests per minute limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.', 'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '28s'}]}}"
+    },
+    {
+      "scenario_id": "policy_complaint_timing",
+      "category": "policy",
+      "turn_number": 1,
+      "customer_id": "C020",
+      "session_id": "eval-dc4565ef6fa4-policy_complaint_timing-default",
+      "question": "Jak długo trwa rozpatrzenie reklamacji?",
+      "answer": null,
+      "actual_tools": null,
+      "expected_tools": [
+        "PolicySearch"
+      ],
+      "latency_seconds": 0.18,
+      "checks": {
+        "answer_supported_by_policy_or_uncertainty": "NOT_EVALUATED",
+        "tool_choice": "ERROR"
+      },
+      "error": "Error calling model 'gemini-3.5-flash-lite' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-3.5-flash-lite, description: Generate content requests per minute limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.\\nPlease retry in 28.699876232s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://aistudio.google.com/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'description': 'Generate content requests per minute limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.', 'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.5-flash-lite'}, 'quotaValue': '15'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '28s'}]}}"
+    }
+  ]
+}

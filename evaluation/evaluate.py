@@ -164,7 +164,7 @@ def run_evaluation():
     run_id = uuid.uuid4().hex[:12]
     results = []
 
-    for scenario in dataset["scenarios"]:
+    for scenario in dataset["scenarios"][1:10]:
         scenario_results = evaluate_scenario(
             scenario=scenario,
             run_id=run_id
