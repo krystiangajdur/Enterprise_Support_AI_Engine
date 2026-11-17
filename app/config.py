@@ -8,8 +8,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 CHROMA_DIR = BASE_DIR / "chroma_db"
 
+INDEX_FILE  = BASE_DIR / 'index.html'
+
+EVAL_DIR = BASE_DIR / "evaluation"
+RESULTS_DIR = EVAL_DIR / "results"
+
 PDF_PATH = DATA_DIR / "ModaLoop_Regulamin_i_Polityka_Logistyczna.pdf"
 ORDERS_CSV = DATA_DIR / "customers_orders.csv"
+
+EVALUATION_JSON = EVAL_DIR / "dataset.json"
 
 EMBEDDING_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"
 LLM_MODEL = "gemini-3.5-flash-lite"

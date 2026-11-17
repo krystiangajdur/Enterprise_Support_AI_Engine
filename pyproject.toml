@@ -22,7 +22,8 @@ dependencies = [
     "langchain-chroma",
     "langchain-google-genai",
     "fastapi",
-    "uvicorn"
+    "uvicorn",
+    "slowapi"
 ]
 
 [project.optional-dependencies]

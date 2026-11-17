@@ -16,7 +16,7 @@ vectorstore = Chroma(
     embedding_function = embeddings
 )
 
-retriever = vectorstore.as_retriever(search_kwargs = {"k":2})
+retriever = vectorstore.as_retriever(search_kwargs = {"k":5})
 
 def search_internal_policy(query: str):
     docs = retriever.invoke(query)
@@ -92,7 +92,9 @@ def build_agent(customer_id):
             "sklepu ModaLoop. "
             "Odpowiadaj po polsku. Na pytania o regulamin odpowiadaj WYŁĄCZNIE na podstawie wyników "
             "narzędzia PolicySearch, a jeśli narzędzie nie zawiera odpowiedzi, powiedz, że nie masz "
-            "tej informacji w regulaminie. Dane o zamówieniach podawaj WYŁĄCZNIE na podstawie "
+            "tej informacji w regulaminie. Dla każdego pytania użyj PolicySearch maksymalnie dwa razy. "
+            "Jeśli wynik nie zawiera odpowiedzi, powiedz, że w regulaminie nie ma tej informacji, "
+            "zamiast szukać ponownie. Dane o zamówieniach podawaj WYŁĄCZNIE na podstawie "
             "wyniku narzędzia CheckOrderStatus."
 
         ),
@@ -116,11 +118,16 @@ def ask(question: str, customer_id: str, session_id: str | None = None):
 
     msgs = result["messages"]
     last_human = max(i for i, m in enumerate(msgs) if m.type == "human")
+    tools_used = []
     for m in msgs[last_human + 1:]:
         for call in getattr(m, "tool_calls", []) or []:
+            tools_used.append(call['name'])
             print(f"[tool] {call['name']}({call['args']})")
 
-    return extract_text(msgs[-1].content)
+    return {
+        'answer': extract_text(msgs[-1].content),
+        'tools': tools_used
+    }
 
 if __name__ == "__main__":
     print("\nHybrid agent system ready for operation!\n")
