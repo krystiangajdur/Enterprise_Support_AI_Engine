@@ -17,7 +17,7 @@ def ingest_policy_pdf():
     print('Loading the PDF file...')
     loader = PyPDFLoader(pdf_path)
     documents = loader.load()
-    print(f'Wczytano stron: {len(documents)}.')
+    print(f'Pages loaded: {len(documents)}.')
 
     print('Splitting the document into chunks...')
     text_splitter = RecursiveCharacterTextSplitter(chunk_size = 500, chunk_overlap = 50)
