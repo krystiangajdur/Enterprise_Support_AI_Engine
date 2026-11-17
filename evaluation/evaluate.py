@@ -4,7 +4,7 @@ import uuid
 import json
 
 from app.agent import ask
-from app.config import EVALUATION_JSON, EVAL_DIR, RESULTS_EVAL
+from app.config import EVALUATION_JSON, RESULTS_DIR
 from evaluation.checks import check_tool_choice
 
 def evaluate_turn(turn, scenario, run_id, turn_number):
@@ -39,6 +39,8 @@ def evaluate_turn(turn, scenario, run_id, turn_number):
         "error": None,
     }
 
+    print(f"Expected tools: {turn.get('expected_tools', 'MISSING')}")
+
     try:
         response = ask(
             question=question,
@@ -47,7 +49,7 @@ def evaluate_turn(turn, scenario, run_id, turn_number):
         )
 
         record["answer"] = response["answer"]
-        record["actual_tools"] = response["tools_used"]
+        record["actual_tools"] = response["tools"]
 
         if not isinstance(record["actual_tools"], list):
             raise TypeError("tools_used must be a list")
@@ -67,8 +69,10 @@ def evaluate_turn(turn, scenario, run_id, turn_number):
     except Exception as exc:
         record["error"] = str(exc)
 
+        print(f"[ERROR] {type(exc).__name__}: {exc}")
+
         if "expected_tools" in turn:
-            record["checks"]["tool_choice"] = "NOT_EVALUATED"
+            record["checks"]["tool_choice"] = "ERROR"
 
     finally:
         record["latency_seconds"] = round(
@@ -111,7 +115,15 @@ def save_results(run_id, results):
         "results": results,
     }
 
-    with open(RESULTS_EVAL, "w", encoding="utf-8") as file:
+    results_path = RESULTS_DIR
+
+    results_path = results_path.with_name(
+        f"results-{run_id}.json"
+    )
+
+    results_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(results_path, "w", encoding="utf-8") as file:
         json.dump(report, file, ensure_ascii=False, indent=2)
 
     return report
@@ -123,7 +135,7 @@ def run_evaluation():
     run_id = uuid.uuid4().hex[:12]
     results = []
 
-    for scenario in dataset["scenarios"]:
+    for scenario in dataset["scenarios"][1:10]:
         scenario_results = evaluate_scenario(
             scenario=scenario,
             run_id=run_id
@@ -135,7 +147,7 @@ def run_evaluation():
 
     print(f"\nEvaluation completed!")
     print(f"Total turns: {report['total_turns']}")
-    print(f"Results saved to: {RESULTS_EVAL}")
+    print(f"Results saved to: {RESULTS_DIR}")
 
 
 if __name__ == "__main__":

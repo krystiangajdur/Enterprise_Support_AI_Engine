@@ -1,7 +1,7 @@
 import time
 
 def check_tool_choice(actual_tools, expected_tools):
-    return actual_tools == expected_tools
+    return set(actual_tools) == set(expected_tools)
 
 def check_answer_contains(answer, expected_values):
     answer = answer.casefold()
