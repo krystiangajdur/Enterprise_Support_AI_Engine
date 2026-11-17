@@ -1,7 +1,7 @@
 import psycopg2
 from langchain.agents import create_agent
 from langchain_chroma import Chroma
-from langchain_core.tools import Tool
+from langchain_core.tools import tool
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_huggingface import HuggingFaceEmbeddings
 from contextlib import closing
@@ -16,19 +16,24 @@ vectorstore = Chroma(
     embedding_function = embeddings
 )
 
-retriever = vectorstore.as_retriever(search_kwargs = {"k":5})
+retriever = vectorstore.as_retriever(search_kwargs = {"k":3})
 
-def search_internal_policy(query: str):
+
+@tool("PolicySearch")
+def search_internal_policy(query: str) -> str:
+    """
+    Wyszukuje informacje w regulaminie sklepu ModaLoop.
+    Używaj do pytań o zwroty, reklamacje, dostawy,
+    logistykę i zasady sklepu.
+    """
     docs = retriever.invoke(query)
-    if not docs:
-        return 'Nie znaleziono odpowiednich informacji w regulaminie'
-    return '\n---\n'.join([doc.page_content for doc in docs])
 
-rag_tool = Tool(
-    name = "PolicySearch",
-    func = search_internal_policy,
-    description = "Przydatne, gdy klient pyta o zasady firmy, regulamin, polityke zwrotow, logistyke lub reklamacje."
-)
+    if not docs:
+        return "Nie znaleziono odpowiednich informacji w regulaminie."
+
+    return "\n---\n".join(
+        doc.page_content for doc in docs
+    )
 
 def get_order(customer_id: str, order_id: str):
     clean_customer_id = customer_id.strip()
@@ -49,27 +54,43 @@ def get_order(customer_id: str, order_id: str):
         return cur.fetchone()
 
 
-def SQL_tool(customer_id):
-    def check_order_status(order_id: str):
+def SQL_tool(customer_id: str):
+
+    @tool("CheckOrderStatus")
+    def check_order_status(order_id: str) -> str:
+        """
+        Sprawdza status, produkt i datę zakupu
+        konkretnego zamówienia klienta ModaLoop.
+        Wymaga numeru zamówienia.
+        """
         clean_order_id = order_id.strip()
+
         if not clean_order_id:
-            return None
+            return "Nie podano numeru zamówienia."
+
         try:
             row = get_order(customer_id, clean_order_id)
-        except Exception as e:
-            print(f"\n[BLĄD POŁĄCZENIA Z BAZĄ]: {e}\n")
-            return f"Wystąpił błąd podczas łączenia z bazą danych."
-        if row is None:
-            return f'Nie znalazłem zamówienia o numerze {clean_order_id} na Twoim koncie.'
-        product_name, status, order_date = row
-        return (f"Zamówienie {clean_order_id}: Produkt: {product_name}\n"
-                f"Status: {status}\nData zakupu: {order_date}")
 
-    return Tool(
-    name = 'CheckOrderStatus',
-    func = check_order_status,
-    description = "Przydatne, gdy klient pyta o status swojego konkretnego zamowienia."
-)
+        except Exception as e:
+            print(f"[BŁĄD POŁĄCZENIA Z BAZĄ]: {e}")
+            return "Wystąpił błąd podczas łączenia z bazą danych."
+
+        if row is None:
+            return (
+                f"Nie znalazłem zamówienia o numerze "
+                f"{clean_order_id} na Twoim koncie."
+            )
+
+        product_name, status, order_date = row
+
+        return (
+            f"Zamówienie {clean_order_id}: "
+            f"Produkt: {product_name}\n"
+            f"Status: {status}\n"
+            f"Data zakupu: {order_date}"
+        )
+
+    return check_order_status
 
 print("Initializing Gemini model...")
 llm = ChatGoogleGenerativeAI(model = LLM_MODEL, timeout = 60, max_retries = 1)
@@ -79,7 +100,7 @@ checkpointer = InMemorySaver()
 def build_agent(customer_id):
     return create_agent(
         model = llm,
-        tools = [rag_tool, SQL_tool(customer_id)],
+        tools = [search_internal_policy, SQL_tool(customer_id)],
         system_prompt = (
             "Jesteś asystentem obsługi klienta sklepu ModaLoop. Pomagasz w sprawach zamówień, "
             "logistyki i regulaminu sklepu. "
