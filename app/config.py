@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 CHROMA_DIR = BASE_DIR / "chroma_db"
 
-INDEX_FILE  = BASE_DIR / 'index.html'
+INDEX_FILE  = BASE_DIR / 'app' / 'index.html'
 
 EVAL_DIR = BASE_DIR / "evaluation"
 RESULTS_DIR = EVAL_DIR / "results"
