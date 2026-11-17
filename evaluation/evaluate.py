@@ -2,7 +2,7 @@ from time import perf_counter
 from datetime import datetime, timezone
 import uuid
 import json
-import traceback
+import time
 
 from app.agent import ask
 from app.config import EVALUATION_JSON, RESULTS_DIR
@@ -181,13 +181,12 @@ def run_evaluation():
     run_id = uuid.uuid4().hex[:12]
     results = []
 
-    for scenario in dataset["scenarios"][29:40]:
-        scenario_results = evaluate_scenario(
-            scenario=scenario,
-            run_id=run_id
-        )
+    for i, scenario in enumerate(dataset["scenarios"], start=1):
+        results.extend(evaluate_scenario(scenario, run_id))
 
-        results.extend(scenario_results)
+        if i % 6 == 0:
+            print("\nPause for 60 seconds to limit the API calls...")
+            time.sleep(60)
 
     report = save_results(run_id, results)
 
