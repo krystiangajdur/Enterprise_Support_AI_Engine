@@ -1,0 +1,110 @@
+{
+  "description": "Ręcznie oznaczone istotne fragmenty ChromaDB dla pytań policy z ModaLoop dataset (60 scenariuszy). Niezależna ocena treści chunków, bez rankingu wyszukiwarki. Pytania bez jednoznacznej referencji są wyłączone z Recall@k.",
+  "cases": [
+    {
+      "id": "policy_returns",
+      "question": "Ile mam dni na zwrot?",
+      "relevant_chunk_ids": [
+        "04984637-990f-4abc-ba70-bd0239fef355"
+      ]
+    },
+    {
+      "id": "policy_return_paraphrase",
+      "question": "W jakim czasie po zakupie mogę odesłać produkt?",
+      "relevant_chunk_ids": [
+        "04984637-990f-4abc-ba70-bd0239fef355"
+      ]
+    },
+    {
+      "id": "policy_return_procedure",
+      "question": "Jak mogę zwrócić zakupiony produkt?",
+      "relevant_chunk_ids": [
+        "3ad7f07e-d333-42f4-a4b9-e8ceabb46537"
+      ]
+    },
+    {
+      "id": "policy_return_steps",
+      "question": "Co powinienem zrobić krok po kroku, żeby zgłosić zwrot?",
+      "relevant_chunk_ids": [
+        "04984637-990f-4abc-ba70-bd0239fef355",
+        "3ad7f07e-d333-42f4-a4b9-e8ceabb46537"
+      ]
+    },
+    {
+      "id": "policy_return_cost",
+      "question": "Kto ponosi koszt odesłania zwracanego towaru?",
+      "relevant_chunk_ids": [
+        "3ad7f07e-d333-42f4-a4b9-e8ceabb46537"
+      ]
+    },
+    {
+      "id": "policy_return_condition",
+      "question": "Czy mogę zwrócić produkt, jeśli go przymierzyłem?",
+      "relevant_chunk_ids": [
+        "3ad7f07e-d333-42f4-a4b9-e8ceabb46537",
+        "aa0d5cf2-5077-4441-a14b-98c7c2efcbfc"
+      ]
+    },
+    {
+      "id": "policy_complaint",
+      "question": "Jak mogę złożyć reklamację?",
+      "relevant_chunk_ids": [
+        "27f92d70-4b8c-493d-b0f8-9eb82c547c9b"
+      ]
+    },
+    {
+      "id": "policy_complaint_timing",
+      "question": "Jak długo trwa rozpatrzenie reklamacji?",
+      "relevant_chunk_ids": [
+        "a5a8a8fe-6fdb-416d-a912-3e1931190fa1"
+      ]
+    },
+    {
+      "id": "policy_delivery",
+      "question": "Jakie są sposoby dostawy w ModaLoop?",
+      "relevant_chunk_ids": [
+        "dacfd353-585e-4e61-9a8e-9a6376e102b2",
+        "8ab5c112-f818-4202-8d08-814c380f548f"
+      ]
+    },
+    {
+      "id": "policy_delivery_time",
+      "question": "Ile zazwyczaj trwa dostawa zamówienia?",
+      "relevant_chunk_ids": [
+        "0907555b-ffd8-4399-8ce9-619937975a98",
+        "dacfd353-585e-4e61-9a8e-9a6376e102b2",
+        "8ab5c112-f818-4202-8d08-814c380f548f"
+      ]
+    },
+    {
+      "id": "policy_delivery_cost",
+      "question": "Ile kosztuje dostawa?",
+      "relevant_chunk_ids": [
+        "dacfd353-585e-4e61-9a8e-9a6376e102b2",
+        "8ab5c112-f818-4202-8d08-814c380f548f"
+      ]
+    }
+  ],
+  "excluded_from_recall": [
+    {
+      "id": "policy_return_shipping",
+      "question": "Gdzie mam wysłać zwracany produkt?",
+      "reason": "Regulamin opisuje kanały zwrotu (Paczkomat InPost, punkt Orlen Paczka), ale nie podaje jednoznacznego adresu, na który należy wysłać produkt."
+    },
+    {
+      "id": "policy_return_receipt",
+      "question": "Czy do zwrotu potrzebuję paragonu?",
+      "reason": "Brak informacji, czy paragon jest wymagany do zwrotu."
+    },
+    {
+      "id": "policy_wrong_address",
+      "question": "Czy mogę zmienić adres dostawy po złożeniu zamówienia?",
+      "reason": "Brak reguły dotyczącej zmiany adresu po złożeniu zamówienia."
+    },
+    {
+      "id": "policy_unknown_details",
+      "question": "Czy sklep zapewnia odbiór zwrotu dronem w ciągu godziny?",
+      "reason": "Brak informacji o odbiorze zwrotu dronem; to pytanie negatywne, nie ma pozytywnego fragmentu gold."
+    }
+  ]
+}
