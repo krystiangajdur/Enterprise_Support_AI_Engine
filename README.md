@@ -192,6 +192,18 @@ The tests check access control against a real database, so PostgreSQL must be ru
 - **Grounded answers.** The prompt requires policy answers to come only from the retrieved fragments and order data only from the order tool.
 - **Docker.** CPU-only PyTorch keeps the image small, dependencies are installed before the code to make use of layer caching, and named volumes keep the database, the vector index and the downloaded model across restarts.
 
+## Retrieval and evaluation notes
+
+- Embeddings: `paraphrase-multilingual-MiniLM-L12-v2` (earlier `all-MiniLM-L6-v2`),
+  stored in ChromaDB.
+- On the current test corpus (~2-page Polish terms & logistics policy),
+  both models retrieved the correct chunks for the tested questions,
+  so the difference was not measurable.
+- Known limitation: the corpus is small, so retrieval quality is easy
+  to get right. Planned: a larger multi-document corpus and an evaluation
+  set (retrieval recall@k, answer correctness, tool choice, latency)
+  to compare embedding models quantitatively.
+
 ## Known limitations
 
 - **Customer identification is a demo simplification.** The id is read from an HTTP header, which anyone can set. In production it would come from a verified token (JWT or OAuth). Do not use real data with this setup.
