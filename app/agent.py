@@ -16,7 +16,7 @@ vectorstore = Chroma(
     embedding_function = embeddings
 )
 
-retriever = vectorstore.as_retriever(search_kwargs = {"k":2})
+retriever = vectorstore.as_retriever(search_kwargs = {"k":5})
 
 def search_internal_policy(query: str):
     docs = retriever.invoke(query)
@@ -92,7 +92,9 @@ def build_agent(customer_id):
             "sklepu ModaLoop. "
             "Odpowiadaj po polsku. Na pytania o regulamin odpowiadaj WYŁĄCZNIE na podstawie wyników "
             "narzędzia PolicySearch, a jeśli narzędzie nie zawiera odpowiedzi, powiedz, że nie masz "
-            "tej informacji w regulaminie. Dane o zamówieniach podawaj WYŁĄCZNIE na podstawie "
+            "tej informacji w regulaminie. Dla każdego pytania użyj PolicySearch maksymalnie dwa razy. "
+            "Jeśli wynik nie zawiera odpowiedzi, powiedz, że w regulaminie nie ma tej informacji, "
+            "zamiast szukać ponownie. Dane o zamówieniach podawaj WYŁĄCZNIE na podstawie "
             "wyniku narzędzia CheckOrderStatus."
 
         ),

@@ -5,7 +5,7 @@ from fastapi.responses import FileResponse
 
 from app.agent import ask
 
-INDEX_FILE = Path(__file__).parent / "index.html"
+from app.config import INDEX_FILE
 
 app = FastAPI(title = "Enterprise Support AI Engine")
 
