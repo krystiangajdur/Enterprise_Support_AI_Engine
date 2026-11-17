@@ -189,7 +189,7 @@ def run_evaluation():
         turn_count += len(scenario_results)
 
         if turn_count >= 7:
-            print("Pausing for 60 seconds...")
+            print("Pausing for 60 seconds to limit API calls...")
             time.sleep(60)
             turn_count = 0
 
