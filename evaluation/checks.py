@@ -21,7 +21,7 @@ def calculate_accuracy(results):
     if not results:
         return None
 
-    return sum(results) / len(results) * 100
+    return round(sum(results) / len(results) * 100, 2)
 
 def classify_error(exc):
     error_message = str(exc).upper()
