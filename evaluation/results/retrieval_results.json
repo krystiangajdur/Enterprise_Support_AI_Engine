@@ -9,11 +9,11 @@
       "id": "policy_returns",
       "question": "Ile mam dni na zwrot?",
       "retrieved_ids": [
-        "b0875085-1bdc-4051-9dc7-ba1129cdc75a",
-        "0907555b-ffd8-4399-8ce9-619937975a98",
-        "04984637-990f-4abc-ba70-bd0239fef355",
-        "8333b696-aefa-4eed-ace3-76403e19da98",
-        "dacfd353-585e-4e61-9a8e-9a6376e102b2"
+        "d783c669-d765-4c28-bb50-f8fa56eb4a4b",
+        "cb0d6ae2-7fe0-4746-97d0-6a7f7c4c9431",
+        "99bf136e-db5a-45bc-ac31-42650da771d5",
+        "0ee2d7cf-6a82-4cac-a171-ff81c1d6e0d7",
+        "2184885c-c733-4451-9c56-8a0ad90720ac"
       ],
       "recall@2": 0.0,
       "recall@3": 1.0,
@@ -23,11 +23,11 @@
       "id": "policy_return_paraphrase",
       "question": "W jakim czasie po zakupie mogę odesłać produkt?",
       "retrieved_ids": [
-        "0907555b-ffd8-4399-8ce9-619937975a98",
-        "a5a8a8fe-6fdb-416d-a912-3e1931190fa1",
-        "04984637-990f-4abc-ba70-bd0239fef355",
-        "b0875085-1bdc-4051-9dc7-ba1129cdc75a",
-        "322e8cc1-4a8d-4e7c-8c0e-8bf813859359"
+        "cb0d6ae2-7fe0-4746-97d0-6a7f7c4c9431",
+        "2ff000bb-6e58-48cb-ac12-0e78809ba8af",
+        "99bf136e-db5a-45bc-ac31-42650da771d5",
+        "d783c669-d765-4c28-bb50-f8fa56eb4a4b",
+        "c4095b09-9efe-4ebc-acd3-a83611fbd25d"
       ],
       "recall@2": 0.0,
       "recall@3": 1.0,
@@ -37,11 +37,11 @@
       "id": "policy_return_procedure",
       "question": "Jak mogę zwrócić zakupiony produkt?",
       "retrieved_ids": [
-        "3ad7f07e-d333-42f4-a4b9-e8ceabb46537",
-        "731feb41-33ef-4fa7-a94d-3cda32ca7ca1",
-        "a5a8a8fe-6fdb-416d-a912-3e1931190fa1",
-        "aa0d5cf2-5077-4441-a14b-98c7c2efcbfc",
-        "04984637-990f-4abc-ba70-bd0239fef355"
+        "72c9bb25-2231-41c5-bfec-496171d598dd",
+        "8f5adb15-38ac-4989-8342-39727f69c0c2",
+        "2ff000bb-6e58-48cb-ac12-0e78809ba8af",
+        "572c915a-6c80-4dd8-9b18-f98caaaaff12",
+        "99bf136e-db5a-45bc-ac31-42650da771d5"
       ],
       "recall@2": 1.0,
       "recall@3": 1.0,
@@ -51,11 +51,11 @@
       "id": "policy_return_steps",
       "question": "Co powinienem zrobić krok po kroku, żeby zgłosić zwrot?",
       "retrieved_ids": [
-        "3ad7f07e-d333-42f4-a4b9-e8ceabb46537",
-        "b0875085-1bdc-4051-9dc7-ba1129cdc75a",
-        "1061e23c-c8b4-434a-9a40-a67944ee6e45",
-        "27f92d70-4b8c-493d-b0f8-9eb82c547c9b",
-        "8333b696-aefa-4eed-ace3-76403e19da98"
+        "72c9bb25-2231-41c5-bfec-496171d598dd",
+        "d783c669-d765-4c28-bb50-f8fa56eb4a4b",
+        "c2c30a0e-41ce-4402-839b-2c57a4a52825",
+        "711d2dd4-272c-497d-8d76-07c0c6d178b7",
+        "0ee2d7cf-6a82-4cac-a171-ff81c1d6e0d7"
       ],
       "recall@2": 0.5,
       "recall@3": 0.5,
@@ -65,11 +65,11 @@
       "id": "policy_return_cost",
       "question": "Kto ponosi koszt odesłania zwracanego towaru?",
       "retrieved_ids": [
-        "731feb41-33ef-4fa7-a94d-3cda32ca7ca1",
-        "aa0d5cf2-5077-4441-a14b-98c7c2efcbfc",
-        "3ad7f07e-d333-42f4-a4b9-e8ceabb46537",
-        "b0875085-1bdc-4051-9dc7-ba1129cdc75a",
-        "04984637-990f-4abc-ba70-bd0239fef355"
+        "8f5adb15-38ac-4989-8342-39727f69c0c2",
+        "572c915a-6c80-4dd8-9b18-f98caaaaff12",
+        "72c9bb25-2231-41c5-bfec-496171d598dd",
+        "d783c669-d765-4c28-bb50-f8fa56eb4a4b",
+        "99bf136e-db5a-45bc-ac31-42650da771d5"
       ],
       "recall@2": 0.0,
       "recall@3": 1.0,
@@ -79,11 +79,11 @@
       "id": "policy_return_condition",
       "question": "Czy mogę zwrócić produkt, jeśli go przymierzyłem?",
       "retrieved_ids": [
-        "3ad7f07e-d333-42f4-a4b9-e8ceabb46537",
-        "aa0d5cf2-5077-4441-a14b-98c7c2efcbfc",
-        "731feb41-33ef-4fa7-a94d-3cda32ca7ca1",
-        "a5a8a8fe-6fdb-416d-a912-3e1931190fa1",
-        "04984637-990f-4abc-ba70-bd0239fef355"
+        "72c9bb25-2231-41c5-bfec-496171d598dd",
+        "572c915a-6c80-4dd8-9b18-f98caaaaff12",
+        "8f5adb15-38ac-4989-8342-39727f69c0c2",
+        "2ff000bb-6e58-48cb-ac12-0e78809ba8af",
+        "99bf136e-db5a-45bc-ac31-42650da771d5"
       ],
       "recall@2": 1.0,
       "recall@3": 1.0,
@@ -93,11 +93,11 @@
       "id": "policy_complaint",
       "question": "Jak mogę złożyć reklamację?",
       "retrieved_ids": [
-        "a5a8a8fe-6fdb-416d-a912-3e1931190fa1",
-        "27f92d70-4b8c-493d-b0f8-9eb82c547c9b",
-        "1061e23c-c8b4-434a-9a40-a67944ee6e45",
-        "1261a344-0a0a-42f0-bf68-234b71d0c32a",
-        "3ad7f07e-d333-42f4-a4b9-e8ceabb46537"
+        "2ff000bb-6e58-48cb-ac12-0e78809ba8af",
+        "711d2dd4-272c-497d-8d76-07c0c6d178b7",
+        "c2c30a0e-41ce-4402-839b-2c57a4a52825",
+        "930c69e8-6c40-4c6f-ba46-50c0dd45f245",
+        "72c9bb25-2231-41c5-bfec-496171d598dd"
       ],
       "recall@2": 1.0,
       "recall@3": 1.0,
@@ -107,11 +107,11 @@
       "id": "policy_complaint_timing",
       "question": "Jak długo trwa rozpatrzenie reklamacji?",
       "retrieved_ids": [
-        "a5a8a8fe-6fdb-416d-a912-3e1931190fa1",
-        "27f92d70-4b8c-493d-b0f8-9eb82c547c9b",
-        "1261a344-0a0a-42f0-bf68-234b71d0c32a",
-        "0907555b-ffd8-4399-8ce9-619937975a98",
-        "04984637-990f-4abc-ba70-bd0239fef355"
+        "2ff000bb-6e58-48cb-ac12-0e78809ba8af",
+        "711d2dd4-272c-497d-8d76-07c0c6d178b7",
+        "930c69e8-6c40-4c6f-ba46-50c0dd45f245",
+        "cb0d6ae2-7fe0-4746-97d0-6a7f7c4c9431",
+        "99bf136e-db5a-45bc-ac31-42650da771d5"
       ],
       "recall@2": 1.0,
       "recall@3": 1.0,
@@ -121,11 +121,11 @@
       "id": "policy_delivery",
       "question": "Jakie są sposoby dostawy w ModaLoop?",
       "retrieved_ids": [
-        "58041b56-0bb5-413d-9fd0-423140ac170a",
-        "3ad7f07e-d333-42f4-a4b9-e8ceabb46537",
-        "85fbf1db-16ef-4f24-a247-18c9a1f7983f",
-        "dacfd353-585e-4e61-9a8e-9a6376e102b2",
-        "8ab5c112-f818-4202-8d08-814c380f548f"
+        "7da33eed-e49b-4633-8773-ab964afe43ef",
+        "72c9bb25-2231-41c5-bfec-496171d598dd",
+        "f8826541-7f6e-4fac-95f1-de59c41c381b",
+        "2184885c-c733-4451-9c56-8a0ad90720ac",
+        "3c3c14a4-588c-4628-8709-e061cc2e2a7b"
       ],
       "recall@2": 0.0,
       "recall@3": 0.0,
@@ -135,11 +135,11 @@
       "id": "policy_delivery_time",
       "question": "Ile zazwyczaj trwa dostawa zamówienia?",
       "retrieved_ids": [
-        "0907555b-ffd8-4399-8ce9-619937975a98",
-        "b0875085-1bdc-4051-9dc7-ba1129cdc75a",
-        "dacfd353-585e-4e61-9a8e-9a6376e102b2",
-        "04984637-990f-4abc-ba70-bd0239fef355",
-        "58041b56-0bb5-413d-9fd0-423140ac170a"
+        "cb0d6ae2-7fe0-4746-97d0-6a7f7c4c9431",
+        "d783c669-d765-4c28-bb50-f8fa56eb4a4b",
+        "2184885c-c733-4451-9c56-8a0ad90720ac",
+        "99bf136e-db5a-45bc-ac31-42650da771d5",
+        "7da33eed-e49b-4633-8773-ab964afe43ef"
       ],
       "recall@2": 0.3333333333333333,
       "recall@3": 0.6666666666666666,
@@ -149,11 +149,11 @@
       "id": "policy_delivery_cost",
       "question": "Ile kosztuje dostawa?",
       "retrieved_ids": [
-        "dacfd353-585e-4e61-9a8e-9a6376e102b2",
-        "b0875085-1bdc-4051-9dc7-ba1129cdc75a",
-        "3ad7f07e-d333-42f4-a4b9-e8ceabb46537",
-        "731feb41-33ef-4fa7-a94d-3cda32ca7ca1",
-        "322e8cc1-4a8d-4e7c-8c0e-8bf813859359"
+        "2184885c-c733-4451-9c56-8a0ad90720ac",
+        "d783c669-d765-4c28-bb50-f8fa56eb4a4b",
+        "72c9bb25-2231-41c5-bfec-496171d598dd",
+        "8f5adb15-38ac-4989-8342-39727f69c0c2",
+        "c4095b09-9efe-4ebc-acd3-a83611fbd25d"
       ],
       "recall@2": 0.5,
       "recall@3": 0.5,
