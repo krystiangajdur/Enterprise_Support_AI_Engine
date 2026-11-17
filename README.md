@@ -219,8 +219,8 @@ The tests check access control against a real database, so PostgreSQL must be ru
 - [x] Conversation memory
 - [x] Simple chat UI
 - [x] Dockerfile and Compose setup for the application
-- [ ] Read-only database role for the agent
-- [ ] Multilingual embeddings and a relevance threshold for retrieval
+- [x] Read-only database role for the agent
+- [x] Multilingual embeddings and a relevance threshold for retrieval
 - [ ] Evaluation set and metrics (retrieval recall, answer correctness, tool choice, latency, cost)
 - [ ] CI (GitHub Actions)
 - [ ] Cloud deployment
