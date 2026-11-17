@@ -13,7 +13,7 @@ def setup_reader_role(engine):
     db = quote(engine.url.database)
     with engine.begin() as conn:
         exists = conn.execute(
-            text("SELECT 1 FROM pg+roles WHERE rolname = :n"),
+            text("SELECT 1 FROM pg_roles WHERE rolname = :n"),
             {"n": DB_READER_USER},
         ).scalar()
         pw = conn.execute(
