@@ -7,7 +7,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from contextlib import closing
 from langgraph.checkpoint.memory import InMemorySaver
 
-from app.config import CHROMA_DIR, EMBEDDING_MODEL, LLM_MODEL, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME
+from app.config import CHROMA_DIR, EMBEDDING_MODEL, LLM_MODEL, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME, DB_READER_USER, DB_READER_PASSWORD
 
 print('Ladowanie bazy wektorowej RAG...')
 embeddings = HuggingFaceEmbeddings(model_name = EMBEDDING_MODEL)
@@ -35,8 +35,8 @@ def get_order(customer_id: str, order_id: str):
     clean_order_id = order_id.strip()
 
     with closing(psycopg2.connect(
-        user=DB_USER,
-        password=DB_PASSWORD,
+        user=DB_READER_USER,
+        password=DB_READER_PASSWORD,
         host=DB_HOST,
         port=DB_PORT,
         dbname=DB_NAME,
