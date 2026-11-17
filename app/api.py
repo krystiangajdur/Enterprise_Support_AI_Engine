@@ -1,5 +1,4 @@
 import logging
-
 from fastapi import FastAPI, Header, HTTPException, Request
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field

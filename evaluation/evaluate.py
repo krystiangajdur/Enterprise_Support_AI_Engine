@@ -2,6 +2,7 @@ from time import perf_counter
 from datetime import datetime, timezone
 import uuid
 import json
+import traceback
 
 from app.agent import ask
 from app.config import EVALUATION_JSON, RESULTS_DIR
@@ -74,6 +75,8 @@ def evaluate_turn(turn, scenario, run_id, turn_number):
             f"[ERROR] {scenario_id} turn {turn_number}: "
             f"{type(exc).__name__}: {exc}"
         )
+
+        traceback.print_exc()
 
         if expected_tools is not None:
             record["checks"]["tool_choice"] = "ERROR"
