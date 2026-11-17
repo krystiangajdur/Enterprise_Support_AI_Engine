@@ -9,7 +9,7 @@ from langgraph.checkpoint.memory import InMemorySaver
 
 from app.config import CHROMA_DIR, EMBEDDING_MODEL, LLM_MODEL, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME, DB_READER_USER, DB_READER_PASSWORD
 
-print('Ladowanie bazy wektorowej RAG...')
+print('Loading a RAG vector database...')
 embeddings = HuggingFaceEmbeddings(model_name = EMBEDDING_MODEL)
 vectorstore = Chroma(
     persist_directory = CHROMA_DIR,
@@ -71,7 +71,7 @@ def SQL_tool(customer_id):
     description = "Przydatne, gdy klient pyta o status swojego konkretnego zamowienia."
 )
 
-print("Inicjalizowanie modelu Gemini...")
+print("Initializing Gemini model...")
 llm = ChatGoogleGenerativeAI(model = LLM_MODEL, timeout = 60, max_retries = 1)
 
 checkpointer = InMemorySaver()
@@ -118,12 +118,12 @@ def ask(question: str, customer_id: str, session_id: str | None = None):
     last_human = max(i for i, m in enumerate(msgs) if m.type == "human")
     for m in msgs[last_human + 1:]:
         for call in getattr(m, "tool_calls", []) or []:
-            print(f"[narzedzie] {call['name']}({call['args']})")
+            print(f"[tool] {call['name']}({call['args']})")
 
     return extract_text(msgs[-1].content)
 
 if __name__ == "__main__":
-    print("\nSystem agenta hybrydowego gotowy do pracy!\n")
+    print("\nHybrid agent system ready for operation!\n")
 
     print("--- TEST 1 ---")
     print(f"\nOdpowiedź agenta:\n{ask('Ile mam dni na zwrot?', '1', '1')}\n")
