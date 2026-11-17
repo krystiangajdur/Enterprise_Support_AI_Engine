@@ -19,3 +19,6 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_HOST = os.getenv("DB_HOST")
 DB_PORT = os.getenv("DB_PORT")
 DB_NAME = os.getenv("DB_NAME")
+
+DB_READER_USER = os.getenv("DB_READER_USER", "support_reader")
+DB_READER_PASSWORD = os.getenv("DB_READER_PASSWORD")
