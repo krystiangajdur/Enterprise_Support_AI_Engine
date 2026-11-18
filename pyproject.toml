@@ -28,10 +28,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "pytest",
-    "black",
-    "flake8",
-    "ragas"
+    "pytest"
 ]
 
 [tool.pytest.ini_options]
