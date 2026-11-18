@@ -310,19 +310,9 @@ Multi-turn memory, customer/session isolation, and the sampled security/scope sc
 - **Basic rate limiting only:** `/ask` is limited to 10 requests per minute per client IP. The limit is not per customer, and behind a reverse proxy the real client IP would need to be taken from forwarded headers (not configured). Gemini API quotas can still interrupt large evaluation runs.
 - **Exposed database port:** the demo Compose file publishes PostgreSQL on host port 5432 for local development. Do not run it on a public host as-is, and do not publish this demo with real data.
 
-## Roadmap
+## Future Work
 
-- [x] Customer-scoped SQL order lookup and read-only database role
-- [x] Input validation for numeric order identifiers
-- [x] Conversation memory scoped by customer and session
-- [x] RAG over a fictional Polish policy with multilingual embeddings
-- [x] FastAPI, chat UI, request limits and per-IP rate limiting
-- [x] Docker Compose setup
-- [x] pytest access-control tests
-- [x] Retrieval Recall@k benchmark and 60-scenario agent evaluation dataset
-- [x] Full baseline and post-improvement evaluation runs
-- [x] GitHub Actions CI (install, load sample data, run tests)
-- [ ] Optional cloud deployment / public demo
+The application is fully functional locally using Docker Compose. An optional next step is deploying it to a cloud environment to make the demo publicly accessible.
 
 ## License
 
